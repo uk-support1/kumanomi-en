@@ -16,18 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Formspree標準POST送信後の ?sent=true パラメータでサンクスメッセージを表示
   var form = document.getElementById("contactForm");
-  var nextField = document.getElementById("formNext");
-  if (form && nextField) {
-    nextField.value = location.origin + location.pathname + "?sent=true#contact";
-  }
-
-  var params = new URLSearchParams(location.search);
   var successMessage = document.getElementById("formSuccess");
-  if (params.get("sent") === "true" && successMessage) {
-    successMessage.hidden = false;
+  var params = new URLSearchParams(location.search);
+
+  if (params.get("sent") === "true") {
+    if (successMessage) {
+      successMessage.hidden = false;
+    }
     if (form) {
       form.hidden = true;
     }
+    history.replaceState(null, "", location.pathname);
   }
 });

@@ -405,9 +405,21 @@ a {
   border: 1px solid var(--color-ocean);
   color: var(--color-ocean-dark);
   border-radius: var(--radius);
-  padding: 18px 20px;
-  font-weight: 600;
+  padding: 20px 22px;
   margin-bottom: 20px;
+}
+
+.form-success p {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.form-success-note {
+  margin-top: 10px !important;
+  font-size: 0.8rem;
+  font-weight: 400 !important;
+  color: var(--color-text-light);
 }
 
 .form-row {

@@ -218,13 +218,14 @@
         <div class="contact-form-wrap">
           <h3>お問い合わせフォーム</h3>
 
-          <p class="form-success" id="formSuccess" hidden>
-            お問い合わせありがとうございます。内容を確認のうえ、ご連絡いたします。
-          </p>
+          <div class="form-success" id="formSuccess" hidden>
+            <p>お問い合わせありがとうございます。<br>内容を確認のうえ、担当者よりご連絡いたします。</p>
+            <p class="form-success-note">このままページをご覧いただけます。</p>
+          </div>
 
           <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvkokado" method="POST">
             <input type="hidden" name="_subject" value="クマノミ園ホームページ お問い合わせ">
-            <input type="hidden" name="_next" id="formNext" value="">
+            <input type="hidden" name="_next" value="https://uk-support1.github.io/kumanomi-en/?sent=true#contact">
 
             <div class="form-row">
               <label for="name">お名前 <span class="required">必須</span></label>
