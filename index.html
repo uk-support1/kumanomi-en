@@ -10,7 +10,9 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="#top" class="logo">グループホーム<span>クマノミ園</span></a>
+    <a href="#top" class="logo">
+      <img src="assets/img/logo-official.jpg" alt="グループホーム クマノミ園" class="logo-img">
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -151,34 +153,105 @@
       </div>
 
       <div class="feature-list">
-        <h3>月額利用料金（目安）</h3>
-        <div class="table-wrap">
-          <table class="price-table">
-            <tbody>
-              <tr>
-                <th>家賃</th>
-                <td class="tbd">要確認</td>
-              </tr>
-              <tr>
-                <th>水道光熱費</th>
-                <td class="tbd">要確認</td>
-              </tr>
-              <tr>
-                <th>食費</th>
-                <td class="tbd">要確認</td>
-              </tr>
-              <tr>
-                <th>その他費用<br><span class="th-sub">（保険料・修繕積立金・日用品費等）</span></th>
-                <td class="tbd">要確認</td>
-              </tr>
-              <tr class="total-row">
-                <th>月額合計目安</th>
-                <td class="tbd">要確認</td>
-              </tr>
-            </tbody>
-          </table>
+        <h3>利用料金の目安</h3>
+
+        <div class="price-summary-grid">
+
+          <div class="price-card">
+            <p class="price-card-label">月額利用の目安</p>
+            <p class="price-card-amount">83,460<span class="unit">円</span></p>
+
+            <details class="price-accordion">
+              <summary>
+                <span class="acc-open">内訳を見る</span>
+                <span class="acc-close">内訳を閉じる</span>
+                <span class="acc-icon" aria-hidden="true"></span>
+              </summary>
+
+              <div class="price-detail">
+                <ul class="price-detail-list">
+                  <li>
+                    <div class="price-detail-row"><span>家賃</span><span>35,000円</span></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>食費（おかず）</span><span>20,880円</span></div>
+                    <div class="price-detail-sub">
+                      <p>クックデリ　朝食240円／昼食360円／夕食360円</p>
+                      <p>全食利用の場合：平日22日 13,200円／休日8日 7,680円</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>食費（米、みそ汁、サラダ、フルーツ代）</span><span>8,160円</span></div>
+                    <div class="price-detail-sub">
+                      <p>1食120円</p>
+                      <p>全食利用の場合：平日22日 5,280円／休日8日 2,880円</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>水道光熱費</span><span>約15,000円</span></div>
+                    <div class="price-detail-sub"><p>※実費のため月によって変動</p></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>修繕積立金</span><span>1,000円</span></div>
+                    <div class="price-detail-sub"><p>※綺麗に使用した場合は全額返金</p></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>消耗品費</span><span>3,000円</span></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>保険代</span><span>420円</span></div>
+                  </li>
+                </ul>
+                <div class="price-detail-total"><span>合計</span><span>83,460円</span></div>
+              </div>
+            </details>
+          </div>
+
+          <div class="price-card">
+            <p class="price-card-label">体験利用の目安（1泊2日）</p>
+            <p class="price-card-amount">2,590<span class="unit">円</span></p>
+
+            <details class="price-accordion">
+              <summary>
+                <span class="acc-open">内訳を見る</span>
+                <span class="acc-close">内訳を閉じる</span>
+                <span class="acc-icon" aria-hidden="true"></span>
+              </summary>
+
+              <div class="price-detail">
+                <p class="price-detail-note">夕食・朝食をクックデリ利用の場合</p>
+                <ul class="price-detail-list">
+                  <li>
+                    <div class="price-detail-row"><span>家賃</span><span>1,150円</span></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>食費（クックデリ）</span><span>600円</span></div>
+                    <div class="price-detail-sub">
+                      <p>朝食240円／昼食360円／夕食360円</p>
+                      <p>今回の例では　夕食＋朝食　600円</p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>食費（米、みそ汁、サラダ、フルーツ代）</span><span>240円</span></div>
+                    <div class="price-detail-sub"><p>1食120円、2食で240円</p></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>水道光熱費</span><span>500円</span></div>
+                  </li>
+                  <li>
+                    <div class="price-detail-row"><span>消耗品費</span><span>100円</span></div>
+                  </li>
+                </ul>
+                <div class="price-detail-total"><span>合計</span><span>2,590円</span></div>
+              </div>
+            </details>
+          </div>
+
         </div>
-        <p class="section-note">※金額は現在確認中です。確定次第、正式な料金を掲載いたします。</p>
+
+        <p class="section-note price-footnote">
+          ※家賃補助1万円と朝の食事はご自身で用意されると<br class="pc-only">月額5～6万円ほどでご利用できます。
+        </p>
       </div>
     </div>
   </section>
