@@ -43,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
       slides[current].classList.add("active");
       dots[current].classList.add("active");
     };
-    // Kept in sync with the CSS Ken Burns loop (heroKenBurns, 24s = 3 x 8s)
-    // in assets/css/style.css — if this changes, update that duration too.
     var SLIDE_INTERVAL = 8000;
     var timer = setInterval(function () {
       showSlide((current + 1) % slides.length);
