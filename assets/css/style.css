@@ -173,15 +173,52 @@ a {
 
 .hero-photo {
   margin-top: 28px;
+}
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 220px;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-.hero-photo img {
+.hero-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(47, 107, 124, 0.25);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.hero-dot.active {
+  width: 22px;
+  background: var(--color-coral);
 }
 
 .btn {
@@ -317,6 +354,124 @@ a {
   font-size: 0.9rem;
   color: var(--color-text-light);
   line-height: 1.7;
+}
+
+.highlight-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.highlight-photos-single {
+  grid-template-columns: 1fr;
+}
+
+.highlight-photos figure {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.highlight-photos img {
+  width: 100%;
+  height: 72px;
+  object-fit: cover;
+  display: block;
+}
+
+.highlight-photos-single img {
+  height: 140px;
+}
+
+.highlight-photos figcaption {
+  padding: 4px 6px;
+  font-size: 0.68rem;
+  color: var(--color-text-light);
+  text-align: center;
+}
+
+/* Gourmet gallery */
+.gourmet-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 18px 0 10px;
+}
+
+.gourmet-card {
+  margin: 0;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gourmet-card:hover,
+.gourmet-card:focus-visible {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+  outline: none;
+}
+
+.gourmet-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.gourmet-card figcaption {
+  padding: 10px 10px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 24, 25, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 10px;
 }
 
 /* Feature list */
@@ -680,6 +835,14 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .gourmet-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gourmet-card img {
+    height: 170px;
+  }
+
   .map-iframe {
     height: 400px;
   }
@@ -714,7 +877,7 @@ a {
     margin-top: 0;
   }
 
-  .hero-photo img {
+  .hero-slider {
     height: 320px;
   }
 
