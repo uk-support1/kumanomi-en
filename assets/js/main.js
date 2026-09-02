@@ -43,16 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
       slides[current].classList.add("active");
       dots[current].classList.add("active");
     };
+    var SLIDE_INTERVAL = 8000;
     var timer = setInterval(function () {
       showSlide((current + 1) % slides.length);
-    }, 5000);
+    }, SLIDE_INTERVAL);
     dots.forEach(function (dot, index) {
       dot.addEventListener("click", function () {
         clearInterval(timer);
         showSlide(index);
         timer = setInterval(function () {
           showSlide((current + 1) % slides.length);
-        }, 5000);
+        }, SLIDE_INTERVAL);
       });
     });
   }
