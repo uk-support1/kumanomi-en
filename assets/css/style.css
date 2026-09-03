@@ -913,4 +913,21 @@ a {
   .pc-only {
     display: none;
   }
+
+  /* 料金表：項目名を折り返し可・金額側は1行を維持して崩れを防ぐ */
+  .price-detail-row {
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .price-detail-row span:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .price-detail-row span:last-child,
+  .price-detail-total span:last-child {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
 }
