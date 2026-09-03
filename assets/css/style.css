@@ -325,61 +325,186 @@ a {
   text-align: center;
 }
 
-/* Highlight cards (3 charms) */
-.highlight-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin: 20px 0 28px;
+/* Feelings (本人・家族の気持ち) */
+.feelings {
+  background: var(--color-bg-alt);
 }
 
-.highlight-card {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  padding: 18px 20px;
-  border-top: 3px solid var(--color-coral);
-}
-
-.highlight-title {
-  margin: 0 0 6px;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--color-ocean-dark);
-}
-
-.highlight-text {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--color-text-light);
-  line-height: 1.7;
-}
-
-.highlight-column {
+.feelings-grid {
   display: flex;
   flex-direction: column;
+  gap: 28px;
 }
 
-.highlight-photo {
-  margin: 10px 0 0;
-  border-radius: var(--radius);
-  overflow: hidden;
+.feelings-voice {
+  text-align: center;
+  padding: 4px 12px;
+}
+
+.feelings-tag {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-ocean-dark);
+  text-transform: uppercase;
+}
+
+.feelings-quote {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.feelings-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 auto;
+}
+
+.feelings-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.feelings-mark-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(30, 34, 30, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.highlight-photo img {
+.feelings-mark {
+  width: 36px;
+  height: auto;
+  display: block;
+}
+
+.feelings-message p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: var(--color-text-light);
+  max-width: 440px;
+}
+
+/* Feature photo (large photo + overlapping white box) */
+.feature-photo {
+  position: relative;
+  margin: 28px 0 40px;
+}
+
+.feature-photo-img {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(30, 34, 30, 0.1);
+}
+
+.feature-photo-img img {
   width: 100%;
-  height: 200px;
+  height: 280px;
+  object-fit: cover;
+  object-position: 50% 40%;
+  display: block;
+}
+
+.feature-photo-box {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 14px 34px rgba(30, 34, 30, 0.1);
+  padding: 22px 24px;
+  margin: -40px 16px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-photo-eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-ocean-dark);
+  text-transform: uppercase;
+}
+
+.feature-photo-text {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--color-text);
+}
+
+/* Life blocks (お部屋・お風呂・お食事) */
+.life-block {
+  margin: 0 0 48px;
+}
+
+.life-block-photo {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(30, 34, 30, 0.1);
+}
+
+.life-block-photo img {
+  width: 100%;
+  height: 240px;
   object-fit: cover;
   display: block;
 }
 
-.highlight-photo figcaption {
-  padding: 8px 10px;
-  font-size: 0.8rem;
-  color: var(--color-text-light);
-  text-align: center;
+.life-block-text {
+  padding: 20px 4px 0;
+}
+
+.life-block-eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-coral-dark);
+  text-transform: uppercase;
+}
+
+.life-block-title {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ocean-dark);
+}
+
+.life-block-bath-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.life-block-photo-main img {
+  height: 300px;
+  object-position: 50% 35%;
+}
+
+.life-block-photo-sub img {
+  height: 150px;
+}
+
+.life-block-meal .life-block-photo img {
+  height: 220px;
 }
 
 /* Gourmet gallery */
@@ -819,8 +944,95 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 
-  .highlight-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .feelings-grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+  }
+
+  .feelings-voice {
+    flex: 0 1 320px;
+  }
+
+  .feelings-quote {
+    font-size: 1.85rem;
+  }
+
+  .feelings-divider {
+    width: 1px;
+    height: 90px;
+    margin: 0;
+  }
+
+  .feelings-message {
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .feature-photo-img img {
+    height: 420px;
+  }
+
+  .feature-photo-box {
+    max-width: 380px;
+    margin: -64px 0 0 44px;
+    padding: 32px 34px;
+  }
+
+  .life-block-room {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .life-block-room .life-block-text {
+    padding: 0;
+  }
+
+  .life-block-room .life-block-photo img {
+    height: 360px;
+  }
+
+  .life-block-bath {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .life-block-bath .life-block-text {
+    padding: 0;
+  }
+
+  .life-block-photo-main img {
+    height: 400px;
+  }
+
+  .life-block-photo-sub img {
+    height: 210px;
+  }
+
+  .life-block-meal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .life-block-meal .life-block-photo {
+    order: 2;
+  }
+
+  .life-block-meal .life-block-text {
+    order: 1;
+    padding: 0;
+  }
+
+  .life-block-meal .life-block-photo img {
+    height: 320px;
   }
 
   .gourmet-gallery {
