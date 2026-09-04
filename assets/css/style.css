@@ -485,6 +485,257 @@ a {
   }
 }
 
+/* Room & Meal coral scene (お部屋・お食事) */
+.coral-scene {
+  background: var(--color-bg-alt);
+  overflow: hidden;
+}
+
+.coral-scene-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.coral-cluster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.coral-cluster.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.coral-cluster-room {
+  width: 300px;
+}
+
+.coral-cluster-meal {
+  width: 260px;
+}
+
+.coral-illustration {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.coral-illustration img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.coral-label {
+  margin: 20px 0 0;
+  padding: 7px 18px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(47, 107, 124, 0.12);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-ocean-dark);
+  position: relative;
+  z-index: 4;
+}
+
+/* Fish mascot (official illustration, gentle drifting motion) */
+.coral-fish {
+  position: absolute;
+  width: 52px;
+  height: auto;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.7s ease 0.5s;
+  animation: coral-fish-swim 7s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.coral-cluster.is-revealed .coral-fish {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.coral-cluster-room .coral-fish {
+  top: 6%;
+  right: -6%;
+}
+
+.coral-cluster-meal .coral-fish {
+  top: 4%;
+  left: -14%;
+}
+
+@keyframes coral-fish-swim {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(6px, -5px);
+  }
+  50% {
+    transform: translate(-4px, 4px);
+  }
+  75% {
+    transform: translate(5px, 3px);
+  }
+}
+
+/* Photo cards popping out from the coral */
+.coral-photo {
+  --rot: 0deg;
+  position: absolute;
+  margin: 0;
+  width: 118px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(47, 107, 124, 0.18);
+  opacity: 0;
+  transform: translateY(18px) scale(0.85) rotate(var(--rot));
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+}
+
+.coral-cluster.is-revealed .coral-photo {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(var(--rot));
+}
+
+.coral-photo img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  object-position: 50% 38%;
+  display: block;
+}
+
+.coral-photo-1 {
+  transition-delay: 0.55s;
+}
+
+.coral-photo-2 {
+  transition-delay: 0.8s;
+}
+
+.coral-photo-3 {
+  transition-delay: 1.05s;
+}
+
+.coral-cluster-room .coral-photo-1 {
+  left: -6%;
+  bottom: 4%;
+  --rot: -5deg;
+}
+
+.coral-cluster-room .coral-photo-2 {
+  left: 32%;
+  bottom: 15%;
+  --rot: 2deg;
+}
+
+.coral-cluster-room .coral-photo-3 {
+  right: -6%;
+  bottom: 8%;
+  --rot: 5deg;
+}
+
+.coral-cluster-meal .coral-photo-1 {
+  left: -10%;
+  bottom: 2%;
+  --rot: -5deg;
+}
+
+.coral-cluster-meal .coral-photo-2 {
+  left: 32%;
+  bottom: -2%;
+  --rot: 3deg;
+}
+
+.coral-cluster-meal .coral-photo-3 {
+  right: -10%;
+  bottom: 12%;
+  --rot: -4deg;
+}
+
+/* Bubble accents (rising, reusing the about-bubble visual language) */
+.coral-bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.coral-cluster.is-revealed .coral-bubble {
+  animation: coral-bubble-rise 7s ease-in infinite;
+}
+
+.coral-bubble-1 {
+  width: 16px;
+  height: 16px;
+  background: rgba(74, 144, 164, 0.35);
+  left: 8%;
+  bottom: 8%;
+  animation-delay: 1.5s;
+}
+
+.coral-bubble-2 {
+  width: 10px;
+  height: 10px;
+  background: rgba(236, 138, 90, 0.4);
+  right: 14%;
+  bottom: 2%;
+  animation-delay: 2.3s;
+}
+
+.coral-bubble-3 {
+  width: 12px;
+  height: 12px;
+  background: rgba(74, 144, 164, 0.3);
+  left: 44%;
+  bottom: -2%;
+  animation-delay: 3.1s;
+}
+
+@keyframes coral-bubble-rise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-140px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coral-cluster,
+  .coral-photo {
+    transition: none;
+  }
+
+  .coral-fish,
+  .coral-bubble {
+    animation: none;
+  }
+}
+
 /* Gourmet gallery */
 .gourmet-gallery {
   display: grid;
@@ -947,6 +1198,33 @@ a {
 
   .about-charm-bath {
     margin-top: 24px;
+  }
+
+  .coral-scene-inner {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 110px;
+  }
+
+  .coral-cluster-room {
+    width: 440px;
+  }
+
+  .coral-cluster-meal {
+    width: 320px;
+  }
+
+  .coral-photo {
+    width: 148px;
+  }
+
+  .coral-photo img {
+    height: 128px;
+  }
+
+  .coral-fish {
+    width: 64px;
   }
 
   .gourmet-gallery {
