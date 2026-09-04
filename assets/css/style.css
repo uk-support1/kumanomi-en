@@ -527,6 +527,26 @@ a {
   position: relative;
   width: 100%;
   z-index: 1;
+  transform-origin: 50% 85%;
+}
+
+.coral-cluster.is-revealed .coral-illustration {
+  animation: coral-wiggle 0.7s ease-out 0.4s;
+}
+
+@keyframes coral-wiggle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  30% {
+    transform: scale(1.03) rotate(-1.5deg);
+  }
+  60% {
+    transform: scale(0.99) rotate(1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .coral-illustration img {
@@ -548,12 +568,12 @@ a {
   z-index: 4;
 }
 
-/* Fish mascot (official illustration, gentle drifting motion) */
+/* Fish mascot (body-only illustration, gentle drifting motion) */
 .coral-fish {
   position: absolute;
-  width: 52px;
+  width: 60px;
   height: auto;
-  z-index: 3;
+  z-index: 2;
   opacity: 0;
   transition: opacity 0.7s ease 0.5s;
   animation: coral-fish-swim 7s ease-in-out infinite;
@@ -590,9 +610,11 @@ a {
   }
 }
 
-/* Photo cards popping out from the coral */
+/* Photo cards popping out from the coral's interior */
 .coral-photo {
   --rot: 0deg;
+  --dx: 0px;
+  --dy: 46px;
   position: absolute;
   margin: 0;
   width: 118px;
@@ -601,14 +623,15 @@ a {
   background: #fff;
   box-shadow: 0 8px 18px rgba(47, 107, 124, 0.18);
   opacity: 0;
-  transform: translateY(18px) scale(0.85) rotate(var(--rot));
-  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 2;
+  transform: translate(var(--dx), var(--dy)) scale(0.55) rotate(var(--rot));
+  transition: opacity 0.6s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
 }
 
 .coral-cluster.is-revealed .coral-photo {
   opacity: 1;
-  transform: translateY(0) scale(1) rotate(var(--rot));
+  transform: translate(0, 0) scale(1) rotate(var(--rot));
+  z-index: 3;
 }
 
 .coral-photo img {
@@ -635,36 +658,48 @@ a {
   left: -6%;
   bottom: 4%;
   --rot: -5deg;
+  --dx: 78px;
+  --dy: 34px;
 }
 
 .coral-cluster-room .coral-photo-2 {
   left: 32%;
   bottom: 15%;
   --rot: 2deg;
+  --dx: 6px;
+  --dy: 50px;
 }
 
 .coral-cluster-room .coral-photo-3 {
   right: -6%;
   bottom: 8%;
   --rot: 5deg;
+  --dx: -78px;
+  --dy: 34px;
 }
 
 .coral-cluster-meal .coral-photo-1 {
   left: -10%;
   bottom: 2%;
   --rot: -5deg;
+  --dx: 64px;
+  --dy: 32px;
 }
 
 .coral-cluster-meal .coral-photo-2 {
   left: 32%;
   bottom: -2%;
   --rot: 3deg;
+  --dx: 4px;
+  --dy: 46px;
 }
 
 .coral-cluster-meal .coral-photo-3 {
   right: -10%;
   bottom: 12%;
   --rot: -4deg;
+  --dx: -64px;
+  --dy: 32px;
 }
 
 /* Bubble accents (rising, reusing the about-bubble visual language) */
@@ -731,7 +766,8 @@ a {
   }
 
   .coral-fish,
-  .coral-bubble {
+  .coral-bubble,
+  .coral-illustration {
     animation: none;
   }
 }
@@ -1223,8 +1259,38 @@ a {
     height: 128px;
   }
 
+  .coral-cluster-room .coral-photo-1 {
+    --dx: 110px;
+    --dy: 40px;
+  }
+
+  .coral-cluster-room .coral-photo-2 {
+    --dx: 8px;
+    --dy: 60px;
+  }
+
+  .coral-cluster-room .coral-photo-3 {
+    --dx: -110px;
+    --dy: 40px;
+  }
+
+  .coral-cluster-meal .coral-photo-1 {
+    --dx: 84px;
+    --dy: 38px;
+  }
+
+  .coral-cluster-meal .coral-photo-2 {
+    --dx: 6px;
+    --dy: 55px;
+  }
+
+  .coral-cluster-meal .coral-photo-3 {
+    --dx: -84px;
+    --dy: 38px;
+  }
+
   .coral-fish {
-    width: 64px;
+    width: 72px;
   }
 
   .gourmet-gallery {
