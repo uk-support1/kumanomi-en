@@ -97,10 +97,10 @@
     </div>
   </section>
 
-  <!-- 2.5 お部屋・お食事（サンゴのコーナー） -->
+  <!-- 2.5 お部屋・お食事・季節のお楽しみ（サンゴのコーナー） -->
   <section id="room-meal-coral" class="section coral-scene">
     <div class="coral-scene-inner">
-      <div class="coral-cluster coral-cluster-room" data-reveal tabindex="0" aria-label="きれいなお部屋の写真を見る">
+      <div class="coral-cluster coral-cluster-room" data-reveal tabindex="0" data-category="お部屋" aria-label="きれいなお部屋の写真を見る">
         <div class="coral-illustration">
           <img src="assets/img/coral-wide.png" alt="" loading="lazy">
         </div>
@@ -109,20 +109,20 @@
         <span class="coral-bubble coral-bubble-2" aria-hidden="true"></span>
         <span class="coral-bubble coral-bubble-3" aria-hidden="true"></span>
 
-        <figure class="coral-photo coral-photo-1">
+        <figure class="coral-photo coral-photo-1" tabindex="0" role="button" aria-label="寝室の写真を大きく見る" data-caption="自分の時間をゆったり過ごせる、落ち着いた明るいお部屋をご用意しています。">
           <img src="room-corrected.png" alt="クマノミ園の寝室" loading="lazy">
         </figure>
-        <figure class="coral-photo coral-photo-2">
+        <figure class="coral-photo coral-photo-2" tabindex="0" role="button" aria-label="リビングの写真を大きく見る" data-caption="みんなでくつろいだり、ゆっくり過ごしたりできる、明るく落ち着いた共有空間です。">
           <img src="living-corrected.png" alt="クマノミ園のリビング" loading="lazy">
         </figure>
-        <figure class="coral-photo coral-photo-3">
+        <figure class="coral-photo coral-photo-3" tabindex="0" role="button" aria-label="キッチンの写真を大きく見る" data-caption="毎日の暮らしを支える、清潔で使いやすいキッチンスペースをご用意しています。">
           <img src="kitchen-corrected.png" alt="クマノミ園のキッチン" loading="lazy">
         </figure>
 
         <p class="coral-label">きれいなお部屋</p>
       </div>
 
-      <div class="coral-cluster coral-cluster-meal" data-reveal tabindex="0" aria-label="おいしい食事の写真を見る">
+      <div class="coral-cluster coral-cluster-meal" data-reveal tabindex="0" data-category="お食事" aria-label="おいしい食事の写真を見る">
         <div class="coral-illustration">
           <img src="assets/img/coral-tall.png" alt="" loading="lazy">
         </div>
@@ -131,20 +131,58 @@
         <span class="coral-bubble coral-bubble-2" aria-hidden="true"></span>
         <span class="coral-bubble coral-bubble-3" aria-hidden="true"></span>
 
-        <figure class="coral-photo coral-photo-1">
+        <figure class="coral-photo coral-photo-1" tabindex="0" role="button" aria-label="普段のお食事の写真を大きく見る" data-caption="毎日の食事も大切な楽しみのひとつ。温かく、ほっとできる献立を大切にしています。">
+          <img src="everyday-meal-corrected.png" alt="クマノミ園の普段のお食事" loading="lazy">
+        </figure>
+        <figure class="coral-photo coral-photo-2" tabindex="0" role="button" aria-label="オムライスの写真を大きく見る" data-caption="ふんわり卵のオムライス。見た目も楽しく、食卓が自然と明るくなるメニューです。">
           <img src="omurice-corrected.png" alt="クマノミ園のオムライス" loading="lazy">
         </figure>
-        <figure class="coral-photo coral-photo-2">
+        <figure class="coral-photo coral-photo-3" tabindex="0" role="button" aria-label="手巻き寿司の写真を大きく見る" data-caption="好きな具材を楽しみながら、食卓を囲む時間も大切なコミュニケーションのひとつです。">
           <img src="temaki-sushi-corrected.png" alt="クマノミ園の手巻き寿司" loading="lazy">
-        </figure>
-        <figure class="coral-photo coral-photo-3">
-          <img src="everyday-meal-corrected.png" alt="クマノミ園の普段のお食事" loading="lazy">
         </figure>
 
         <p class="coral-label">おいしい食事</p>
       </div>
+
+      <div class="coral-cluster coral-cluster-season" data-reveal tabindex="0" data-category="季節のお楽しみ" aria-label="季節のお楽しみの写真を見る">
+        <div class="coral-illustration">
+          <img src="assets/img/coral-wide.png" alt="" loading="lazy">
+        </div>
+        <img class="coral-fish" src="assets/img/clownfish-mascot.png" alt="" aria-hidden="true" loading="lazy">
+        <span class="coral-bubble coral-bubble-1" aria-hidden="true"></span>
+        <span class="coral-bubble coral-bubble-2" aria-hidden="true"></span>
+        <span class="coral-bubble coral-bubble-3" aria-hidden="true"></span>
+
+        <figure class="coral-photo coral-photo-1" tabindex="0" role="button" aria-label="うなぎの写真を大きく見る" data-caption="季節を感じる特別なメニューも楽しみのひとつ。いつもより少し華やかな食卓になります。">
+          <img src="seasonal-meal-unagi-corrected.png" alt="クマノミ園の季節のお食事（うなぎ）" loading="lazy">
+        </figure>
+        <figure class="coral-photo coral-photo-2" tabindex="0" role="button" aria-label="七夕そうめんの写真を大きく見る" data-caption="季節の行事を楽しみながら、日々の暮らしの中にも笑顔が生まれる時間を大切にしています。">
+          <img src="tanabata-somen-corrected.png" alt="クマノミ園の七夕そうめん" loading="lazy">
+        </figure>
+        <figure class="coral-photo coral-photo-3" tabindex="0" role="button" aria-label="お正月の食事の写真を大きく見る" data-caption="新しい年の始まりも、ゆったりと。季節を感じる特別なひとときを楽しみます。">
+          <img src="newyear-corrected.jpeg" alt="クマノミ園のお正月の食事" loading="lazy">
+        </figure>
+
+        <p class="coral-label">季節のお楽しみ</p>
+      </div>
     </div>
   </section>
+
+  <div class="coral-gallery-modal" id="coralGalleryModal" hidden>
+    <div class="coral-gallery-backdrop" id="coralGalleryBackdrop"></div>
+    <div class="coral-gallery-dialog" role="dialog" aria-modal="true" aria-label="写真ギャラリー">
+      <button type="button" class="coral-gallery-close" id="coralGalleryClose" aria-label="閉じる">&times;</button>
+      <div class="coral-gallery-media">
+        <button type="button" class="coral-gallery-nav coral-gallery-prev" id="coralGalleryPrev" aria-label="前の写真">&#10094;</button>
+        <img src="" alt="" id="coralGalleryImg">
+        <button type="button" class="coral-gallery-nav coral-gallery-next" id="coralGalleryNext" aria-label="次の写真">&#10095;</button>
+      </div>
+      <div class="coral-gallery-info">
+        <p class="coral-gallery-category" id="coralGalleryCategory"></p>
+        <p class="coral-gallery-caption" id="coralGalleryCaption"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- 3. お部屋・暮らし・支援内容 -->
   <section id="life" class="section section-alt">

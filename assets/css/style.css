@@ -485,7 +485,7 @@ a {
   }
 }
 
-/* Room & Meal coral scene (お部屋・お食事) */
+/* Room & Meal & Seasonal coral scene (お部屋・お食事・季節のお楽しみ) */
 .coral-scene {
   background: var(--color-bg-alt);
   overflow: hidden;
@@ -496,7 +496,9 @@ a {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 64px;
 }
 
@@ -521,6 +523,10 @@ a {
 
 .coral-cluster-meal {
   width: 260px;
+}
+
+.coral-cluster-season {
+  width: 300px;
 }
 
 .coral-illustration {
@@ -582,6 +588,11 @@ a {
   left: -14%;
 }
 
+.coral-cluster-season .coral-fish {
+  top: 4%;
+  right: -8%;
+}
+
 @keyframes coral-fish-swim {
   0%, 100% {
     transform: translate(0, 0);
@@ -615,6 +626,7 @@ a {
   transition-delay: var(--exit-delay, 0s);
   z-index: 0;
   pointer-events: none;
+  cursor: pointer;
 }
 
 .coral-cluster:hover .coral-photo,
@@ -623,6 +635,12 @@ a {
   transform: translate(0, 0) scale(1) rotate(var(--rot));
   transition-delay: var(--enter-delay, 0s);
   z-index: 3;
+  pointer-events: auto;
+}
+
+.coral-photo:focus-visible {
+  outline: 2px solid var(--color-ocean);
+  outline-offset: 2px;
 }
 
 .coral-photo img {
@@ -672,28 +690,54 @@ a {
   --dy: 34px;
 }
 
+/* お食事：扇状に広がる配置 */
 .coral-cluster-meal .coral-photo-1 {
   left: -10%;
   bottom: 2%;
-  --rot: -5deg;
-  --dx: 64px;
-  --dy: 32px;
+  --rot: -12deg;
+  --dx: 62px;
+  --dy: 22px;
 }
 
 .coral-cluster-meal .coral-photo-2 {
-  left: 32%;
-  bottom: -2%;
-  --rot: 3deg;
+  left: 30%;
+  bottom: 26%;
+  --rot: 0deg;
   --dx: 4px;
-  --dy: 46px;
+  --dy: 55px;
 }
 
 .coral-cluster-meal .coral-photo-3 {
   right: -10%;
-  bottom: 12%;
+  bottom: 2%;
+  --rot: 12deg;
+  --dx: -62px;
+  --dy: 22px;
+}
+
+/* 季節のお楽しみ：少し上方向に展開する配置 */
+.coral-cluster-season .coral-photo-1 {
+  left: 6%;
+  bottom: 6%;
   --rot: -4deg;
-  --dx: -64px;
-  --dy: 32px;
+  --dx: 42px;
+  --dy: 34px;
+}
+
+.coral-cluster-season .coral-photo-2 {
+  left: 30%;
+  bottom: 28%;
+  --rot: 3deg;
+  --dx: -8px;
+  --dy: 46px;
+}
+
+.coral-cluster-season .coral-photo-3 {
+  left: 52%;
+  bottom: 46%;
+  --rot: -3deg;
+  --dx: -42px;
+  --dy: 55px;
 }
 
 /* Bubble accents (rising, reusing the about-bubble visual language) */
@@ -764,6 +808,130 @@ a {
   .coral-bubble {
     animation: none;
   }
+}
+
+/* Coral gallery modal (写真クリックで拡大表示) */
+.coral-gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.coral-gallery-modal[hidden] {
+  display: none;
+}
+
+.coral-gallery-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 24, 25, 0.55);
+}
+
+.coral-gallery-dialog {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 44px 20px 24px;
+}
+
+.coral-gallery-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coral-gallery-close:hover {
+  background: var(--color-border);
+}
+
+.coral-gallery-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coral-gallery-media img {
+  max-width: 100%;
+  max-height: 50vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: var(--radius);
+}
+
+.coral-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  color: var(--color-ocean-dark);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.coral-gallery-nav:hover {
+  background: var(--color-bg-alt);
+}
+
+.coral-gallery-prev {
+  left: 4px;
+}
+
+.coral-gallery-next {
+  right: 4px;
+}
+
+.coral-gallery-info {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.coral-gallery-category {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-coral-dark);
+}
+
+.coral-gallery-caption {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--color-text);
 }
 
 /* Gourmet gallery */
@@ -1234,57 +1402,92 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    gap: 110px;
+    gap: 48px;
   }
 
   .coral-cluster-room {
-    width: 440px;
+    width: 320px;
   }
 
   .coral-cluster-meal {
+    width: 260px;
+  }
+
+  .coral-cluster-season {
     width: 320px;
   }
 
   .coral-photo {
-    width: 148px;
+    width: 138px;
   }
 
   .coral-photo img {
-    height: 128px;
+    height: 118px;
   }
 
   .coral-cluster-room .coral-photo-1 {
-    --dx: 110px;
-    --dy: 40px;
+    --dx: 100px;
+    --dy: 38px;
   }
 
   .coral-cluster-room .coral-photo-2 {
     --dx: 8px;
-    --dy: 60px;
+    --dy: 58px;
   }
 
   .coral-cluster-room .coral-photo-3 {
-    --dx: -110px;
-    --dy: 40px;
+    --dx: -100px;
+    --dy: 38px;
   }
 
   .coral-cluster-meal .coral-photo-1 {
-    --dx: 84px;
-    --dy: 38px;
+    --dx: 78px;
+    --dy: 26px;
   }
 
   .coral-cluster-meal .coral-photo-2 {
     --dx: 6px;
-    --dy: 55px;
+    --dy: 62px;
   }
 
   .coral-cluster-meal .coral-photo-3 {
-    --dx: -84px;
-    --dy: 38px;
+    --dx: -78px;
+    --dy: 26px;
+  }
+
+  .coral-cluster-season .coral-photo-1 {
+    --dx: 52px;
+    --dy: 36px;
+  }
+
+  .coral-cluster-season .coral-photo-2 {
+    --dx: -10px;
+    --dy: 50px;
+  }
+
+  .coral-cluster-season .coral-photo-3 {
+    --dx: -52px;
+    --dy: 60px;
   }
 
   .coral-fish {
-    width: 72px;
+    width: 68px;
+  }
+
+  .coral-gallery-dialog {
+    padding: 44px 48px 28px;
+  }
+
+  .coral-gallery-media img {
+    max-height: 58vh;
+  }
+
+  .coral-gallery-prev {
+    left: -18px;
+  }
+
+  .coral-gallery-next {
+    right: -18px;
   }
 
   .gourmet-gallery {

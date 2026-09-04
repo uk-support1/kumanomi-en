@@ -124,4 +124,89 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+
+  // ===== サンゴギャラリー：写真クリックで拡大表示（#room-meal-coral専用処理） =====
+  (function () {
+    var clusters = document.querySelectorAll(".coral-cluster");
+    var modal = document.getElementById("coralGalleryModal");
+    var modalImg = document.getElementById("coralGalleryImg");
+    if (!clusters.length || !modal || !modalImg) return;
+
+    var categoryEl = document.getElementById("coralGalleryCategory");
+    var captionEl = document.getElementById("coralGalleryCaption");
+    var closeBtn = document.getElementById("coralGalleryClose");
+    var backdrop = document.getElementById("coralGalleryBackdrop");
+    var prevBtn = document.getElementById("coralGalleryPrev");
+    var nextBtn = document.getElementById("coralGalleryNext");
+
+    var currentPhotos = [];
+    var currentIndex = 0;
+
+    var renderCurrentPhoto = function () {
+      var photo = currentPhotos[currentIndex];
+      if (!photo) return;
+      modalImg.src = photo.src;
+      modalImg.alt = photo.alt;
+      if (captionEl) captionEl.textContent = photo.caption;
+    };
+
+    var openGallery = function (cluster, startIndex) {
+      var photoEls = cluster.querySelectorAll(".coral-photo");
+      currentPhotos = Array.prototype.map.call(photoEls, function (fig) {
+        var im = fig.querySelector("img");
+        return {
+          src: im.getAttribute("src"),
+          alt: im.getAttribute("alt") || "",
+          caption: fig.getAttribute("data-caption") || ""
+        };
+      });
+      currentIndex = startIndex;
+      if (categoryEl) categoryEl.textContent = cluster.getAttribute("data-category") || "";
+      renderCurrentPhoto();
+      modal.hidden = false;
+    };
+
+    var closeGallery = function () {
+      modal.hidden = true;
+    };
+
+    var showNext = function () {
+      if (!currentPhotos.length) return;
+      currentIndex = (currentIndex + 1) % currentPhotos.length;
+      renderCurrentPhoto();
+    };
+
+    var showPrev = function () {
+      if (!currentPhotos.length) return;
+      currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+      renderCurrentPhoto();
+    };
+
+    clusters.forEach(function (cluster) {
+      var photoEls = cluster.querySelectorAll(".coral-photo");
+      photoEls.forEach(function (fig, index) {
+        fig.addEventListener("click", function () {
+          openGallery(cluster, index);
+        });
+        fig.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openGallery(cluster, index);
+          }
+        });
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", closeGallery);
+    if (backdrop) backdrop.addEventListener("click", closeGallery);
+    if (nextBtn) nextBtn.addEventListener("click", showNext);
+    if (prevBtn) prevBtn.addEventListener("click", showPrev);
+
+    document.addEventListener("keydown", function (e) {
+      if (modal.hidden) return;
+      if (e.key === "Escape") closeGallery();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+  })();
 });
