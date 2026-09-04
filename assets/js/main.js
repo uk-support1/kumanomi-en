@@ -99,4 +99,29 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeLightbox();
   });
+
+  // クマノミ園について：スクロールでふわっと表示
+  var revealTargets = document.querySelectorAll("[data-reveal]");
+  if (revealTargets.length) {
+    if ("IntersectionObserver" in window) {
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-revealed");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      revealTargets.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      revealTargets.forEach(function (el) {
+        el.classList.add("is-revealed");
+      });
+    }
+  }
 });
