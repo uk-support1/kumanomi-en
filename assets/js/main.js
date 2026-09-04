@@ -58,48 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 食事写真のライトボックス
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightboxImg");
-  var lightboxClose = document.getElementById("lightboxClose");
-
-  var openLightbox = function (src, alt) {
-    if (!lightbox || !lightboxImg) return;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
-    lightbox.hidden = false;
-  };
-  var closeLightbox = function () {
-    if (!lightbox) return;
-    lightbox.hidden = true;
-  };
-
-  document.querySelectorAll(".gourmet-card").forEach(function (card) {
-    var img = card.querySelector("img");
-    if (!img) return;
-    card.addEventListener("click", function () {
-      openLightbox(img.src, img.alt);
-    });
-    card.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openLightbox(img.src, img.alt);
-      }
-    });
-  });
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", closeLightbox);
-  }
-  if (lightbox) {
-    lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeLightbox();
-  });
-
   // クマノミ園について：スクロールでふわっと表示
   var revealTargets = document.querySelectorAll("[data-reveal]");
   if (revealTargets.length) {
@@ -125,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ===== サンゴギャラリー：写真クリックで拡大表示（#room-meal-coral専用処理） =====
+  // ===== サンゴギャラリー：写真クリックで拡大表示（#life内サンゴ3カテゴリ専用処理） =====
   (function () {
     var clusters = document.querySelectorAll(".coral-cluster");
     var modal = document.getElementById("coralGalleryModal");
