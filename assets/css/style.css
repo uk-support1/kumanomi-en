@@ -857,6 +857,12 @@ a {
     display: none;
   }
 
+  /* ファーストビュー説明文：フォント環境によって画面幅からはみ出すのを防ぐ */
+  .hero-lead {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   /* 料金表：項目名を折り返し可・金額側は1行を維持して崩れを防ぐ */
   .price-detail-row {
     align-items: baseline;
