@@ -135,108 +135,60 @@ a {
   font-size: 0.95rem;
 }
 
-/* Hero */
+/* Hero: V4 continuous photo track, scoped to the V1 first view. */
 .hero {
-  padding: 48px 20px 40px;
-  background: linear-gradient(180deg, #eaf4f5 0%, var(--color-bg) 100%);
-}
-
-.hero-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-
-.hero-text {
-  text-align: center;
-}
-
-.hero-eyebrow {
-  color: var(--color-ocean-dark);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin: 0 0 12px;
-  font-size: 0.9rem;
-}
-
-.hero h1 {
-  font-size: 1.7rem;
-  line-height: 1.5;
-  margin: 0 0 18px;
-  color: var(--color-text);
-}
-
-.hero-lead {
-  color: var(--color-text-light);
-  margin: 0 0 24px;
-  font-size: 1.05rem;
-}
-
-.hero-photo {
-  margin-top: 28px;
-}
-
-.hero-slider {
+  --hero-height: clamp(520px, 76svh, 700px);
   position: relative;
-  width: 100%;
-  height: 220px;
-  border-radius: var(--radius);
+  height: var(--hero-height);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  background: var(--color-bg-alt);
+  background: #c7d2d0;
 }
-
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1);
-  transition: opacity 2.4s ease-in-out;
-}
-
-.hero-slide.active {
-  opacity: 1;
-  animation: heroKenBurns 8s ease-out forwards;
-}
-
-@keyframes heroKenBurns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-slide.active {
-    animation: none;
-  }
-}
-
-.hero-dots {
+.hero-media, .hero-scrim, .hero-content { position: absolute; inset: 0; }
+.hero-track {
   display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
+  width: max-content;
+  height: 100%;
+  animation: hero-marquee 32s linear infinite;
+  will-change: transform;
 }
-
-.hero-dot {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  border: none;
-  border-radius: 999px;
-  background: rgba(47, 107, 124, 0.25);
-  cursor: pointer;
-  transition: width 0.2s ease, background 0.2s ease;
+.hero-panel {
+  flex: none;
+  height: 100%;
+  aspect-ratio: var(--photo-ratio);
+  margin: 0;
+  overflow: hidden;
 }
-
-.hero-dot.active {
-  width: 22px;
-  background: var(--color-coral);
+.hero-panel img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.hero-scrim {
+  background: linear-gradient(90deg, rgba(19,28,29,.66), rgba(19,28,29,.38) 38%, rgba(19,28,29,.08) 72%), linear-gradient(0deg, rgba(19,28,29,.18), transparent 42%);
+}
+.hero-content { display: flex; align-items: center; padding: 24px; pointer-events: none; }
+.hero-content-inner { width: 100%; max-width: var(--max-width); margin: 0 auto; }
+.hero-eyebrow { margin: 0 0 20px; color: #fff; font-size: .9rem; font-weight: 600; letter-spacing: .05em; }
+.hero h1 { margin: 0 0 24px; color: #fff; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.42; letter-spacing: .04em; text-shadow: 0 3px 20px rgba(0,0,0,.18); }
+.hero-lead { max-width: 680px; margin: 0 0 34px; color: #fff; font-size: 1.0625rem; line-height: 2; text-shadow: 0 1px 8px rgba(0,0,0,.3); }
+.hero-content .btn { pointer-events: auto; }
+.hero-motion { position: absolute; right: 16px; bottom: 14px; min-height: 44px; padding: 8px 16px; border: 1px solid rgba(255,255,255,.7); border-radius: 999px; background: rgba(19,28,29,.65); color: #fff; font: inherit; font-size: .8rem; cursor: pointer; }
+.hero.is-paused .hero-track { animation-play-state: paused; }
+.hero-motion:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@media (max-width: 767px) {
+  .hero { --hero-height: clamp(500px, 76svh, 610px); }
+  .hero-track { animation-duration: 34s; }
+  .hero-panel { max-width: 118vw; }
+  .hero-panel img { object-position: 62% 45%; }
+  .hero-scrim { background: linear-gradient(90deg, rgba(20,29,30,.4), rgba(20,29,30,.1)), linear-gradient(0deg, rgba(20,29,30,.75), transparent 90%); }
+  .hero-content { align-items: flex-end; padding: 24px 20px 76px; }
+  .hero-eyebrow { margin-bottom: 13px; font-size: .8rem; }
+  .hero h1 { margin-bottom: 17px; font-size: clamp(1.65rem, 6.2vw, 2.45rem); line-height: 1.45; letter-spacing: .02em; }
+  .hero-lead { margin-bottom: 22px; font-size: .92rem; line-height: 1.9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-track { animation: none; }
+  .hero-motion { display: none; }
 }
 
 .btn {
@@ -344,15 +296,16 @@ a {
   text-align: center;
 }
 
-/* Highlight cards (3 charms) */
+/* Highlight cards (4 charms) */
 .highlight-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
+  gap: 24px;
   margin: 20px 0 28px;
 }
 
 .highlight-card {
+  flex: 1;
   background: #fff;
   border-radius: var(--radius);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -389,8 +342,9 @@ a {
 
 .highlight-photo img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 300px;
+  object-fit: contain;
+  background: var(--color-bg-alt);
   display: block;
 }
 
@@ -429,7 +383,8 @@ a {
 .gourmet-card img {
   width: 100%;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--color-bg-alt);
   display: block;
 }
 
@@ -476,6 +431,13 @@ a {
   cursor: pointer;
   padding: 4px 10px;
 }
+
+/* Floor plan: preserve the original diagram and offer its full-resolution file. */
+.floorplan { margin: 16px 0 0; }
+.floorplan a { display: block; background: #fff; }
+.floorplan a:focus-visible { outline: 3px solid var(--color-ocean); outline-offset: 4px; }
+.floorplan img { width: 100%; height: auto; }
+.floorplan figcaption { margin-top: 10px; font-size: .85rem; color: var(--color-text-light); }
 
 /* Feature list */
 .feature-list {
@@ -835,7 +797,7 @@ a {
   }
 
   .highlight-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .gourmet-gallery {
@@ -848,40 +810,6 @@ a {
 
   .map-iframe {
     height: 400px;
-  }
-
-  .hero {
-    padding: 64px 20px 64px;
-  }
-
-  .hero-inner {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    text-align: left;
-  }
-
-  .hero-text {
-    flex: 1;
-    text-align: left;
-  }
-
-  .hero-eyebrow,
-  .hero-lead {
-    text-align: left;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-photo {
-    flex: 1;
-    margin-top: 0;
-  }
-
-  .hero-slider {
-    height: 320px;
   }
 
   .photo-grid {

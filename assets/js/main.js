@@ -31,30 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     history.replaceState(null, "", location.pathname);
   }
 
-  // ヒーローの写真スライダー
-  var slides = document.querySelectorAll("#heroSlider .hero-slide");
-  var dots = document.querySelectorAll("#heroDots .hero-dot");
-  if (slides.length > 1) {
-    var current = 0;
-    var showSlide = function (index) {
-      slides[current].classList.remove("active");
-      dots[current].classList.remove("active");
-      current = index;
-      slides[current].classList.add("active");
-      dots[current].classList.add("active");
-    };
-    var SLIDE_INTERVAL = 8000;
-    var timer = setInterval(function () {
-      showSlide((current + 1) % slides.length);
-    }, SLIDE_INTERVAL);
-    dots.forEach(function (dot, index) {
-      dot.addEventListener("click", function () {
-        clearInterval(timer);
-        showSlide(index);
-        timer = setInterval(function () {
-          showSlide((current + 1) % slides.length);
-        }, SLIDE_INTERVAL);
-      });
+  // V4のCSS連続スライド。一時停止操作だけを追加。
+  var hero = document.querySelector(".hero");
+  var motionButton = document.querySelector(".hero-motion");
+  if (hero && motionButton) {
+    motionButton.addEventListener("click", function () {
+      var paused = hero.classList.toggle("is-paused");
+      motionButton.setAttribute("aria-pressed", String(paused));
+      motionButton.setAttribute("aria-label", paused ? "写真の動きを再開" : "写真の動きを停止");
+      motionButton.textContent = paused ? "再生" : "一時停止";
     });
   }
 

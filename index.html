@@ -31,26 +31,28 @@
 
   <!-- 1. トップ・メイン案内 -->
   <section id="top" class="hero">
-    <div class="hero-inner">
-      <div class="hero-text">
+    <div class="hero-media">
+      <div class="hero-track">
+        <figure class="hero-panel" style="--photo-ratio: 1536 / 962"><img src="assets/img/hero/hero-exterior.jpg" alt="クマノミ園の外観イメージ" width="1536" height="962" fetchpriority="high"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1920 / 1202"><img src="assets/img/hero/hero-dining-01.jpg" alt="クマノミ園の食堂イメージ（洗面台側）" width="1920" height="1202"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1920 / 1202"><img src="assets/img/hero/hero-dining-02.jpg" alt="クマノミ園の食堂イメージ（テーブル側）" width="1920" height="1202"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1086 / 1448"><img src="assets/img/hero/hero-room.jpg" alt="クマノミ園のお部屋" width="1086" height="1448"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1536 / 962" aria-hidden="true"><img src="assets/img/hero/hero-exterior.jpg" alt="" width="1536" height="962"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1920 / 1202" aria-hidden="true"><img src="assets/img/hero/hero-dining-01.jpg" alt="" width="1920" height="1202"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1920 / 1202" aria-hidden="true"><img src="assets/img/hero/hero-dining-02.jpg" alt="" width="1920" height="1202"></figure>
+        <figure class="hero-panel" style="--photo-ratio: 1086 / 1448" aria-hidden="true"><img src="assets/img/hero/hero-room.jpg" alt="" width="1086" height="1448"></figure>
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-content-inner">
         <p class="hero-eyebrow">グループホーム クマノミ園</p>
         <h1>ほっとする、<br>安らぎの場所を目指して</h1>
-        <p class="hero-lead">利用者の方に寄り添い、明るく楽しく、自立した生活ができるよう<br class="pc-only">安らげる環境を提供します。</p>
+        <p class="hero-lead">ご利用になる方に寄り添い、明るく楽しく、自立した暮らしを送れるように。<br class="pc-only">心が安らぐ環境を整えます。</p>
         <a href="#contact" class="btn btn-primary">お気軽にご相談ください</a>
       </div>
-      <div class="hero-photo">
-        <div class="hero-slider" id="heroSlider">
-          <img src="リビング.jpg" alt="クマノミ園のリビングスペース" class="hero-slide active">
-          <img src="CAM_A_01-1536x962.jpg" alt="クマノミ園の外観イメージ" class="hero-slide">
-          <img src="七夕そうめん.jpg" alt="七夕そうめんの食事" class="hero-slide">
-        </div>
-        <div class="hero-dots" id="heroDots">
-          <button type="button" class="hero-dot active" data-index="0" aria-label="スライド1を表示"></button>
-          <button type="button" class="hero-dot" data-index="1" aria-label="スライド2を表示"></button>
-          <button type="button" class="hero-dot" data-index="2" aria-label="スライド3を表示"></button>
-        </div>
-      </div>
     </div>
+    <button type="button" class="hero-motion" aria-label="写真の動きを停止" aria-pressed="false">一時停止</button>
   </section>
 
   <!-- 2. クマノミ園について -->
@@ -59,21 +61,21 @@
       <h2 class="section-title">クマノミ園について</h2>
       <p class="section-lead">
         「温かくて、皆さまが安心して生活ができる」<br>
-        そのような思いから、クマノミ園という名前にしました。
+        そんな思いを込めて、クマノミ園と名付けました。
       </p>
       <p class="section-text">
-        利用者の方に寄り添い、明るく楽しく、自立した生活ができるよう、安らげる環境を提供します。
+        ご利用になる方に寄り添い、明るく楽しく、自立した暮らしを送れるように。心が安らぐ環境を整えます。
       </p>
 
       <div class="highlight-grid">
         <div class="highlight-column">
           <div class="highlight-card">
             <p class="highlight-title">きれいなお部屋</p>
-            <p class="highlight-text">全戸リノベーション済みで、清潔で快適に過ごせます。</p>
+            <p class="highlight-text">すべてのお部屋をリノベーションしています。清潔で快適に過ごせるお部屋です。</p>
           </div>
           <figure class="highlight-photo">
-            <img src="リビング.jpg" alt="クマノミ園のリビングスペース" loading="lazy">
-            <figcaption>リビング</figcaption>
+            <img src="assets/img/facility/room.jpg" alt="ベッドとエアコンを備えたクマノミ園のお部屋" loading="lazy">
+            <figcaption>お部屋</figcaption>
           </figure>
         </div>
 
@@ -83,7 +85,7 @@
             <p class="highlight-text">毎日の食事に加え、季節の行事にあわせた特別な食事もあります。</p>
           </div>
           <figure class="highlight-photo">
-            <img src="普段のお食事(微修正).jpg" alt="普段のお食事の様子" loading="lazy">
+            <img src="assets/img/facility/everyday-meal-refined.jpg" alt="普段のお食事の様子" loading="lazy">
             <figcaption>毎日の食事</figcaption>
           </figure>
         </div>
@@ -94,8 +96,19 @@
             <p class="highlight-text">ゆったり使える広めのお風呂で、くつろげます。</p>
           </div>
           <figure class="highlight-photo">
-            <img src="お風呂.jpg" alt="お風呂の様子" loading="lazy">
+            <img src="assets/img/facility/bath.jpg" alt="お風呂の様子" loading="lazy">
             <figcaption>広めのお風呂</figcaption>
+          </figure>
+        </div>
+
+        <div class="highlight-column">
+          <div class="highlight-card">
+            <p class="highlight-title">くつろぎの食堂</p>
+            <p class="highlight-text">食事やおしゃべりの時間を過ごせる、明るい食堂です。</p>
+          </div>
+          <figure class="highlight-photo">
+            <img src="assets/img/facility/dining.jpg" alt="テーブルと椅子を備えたクマノミ園の食堂" loading="lazy">
+            <figcaption>食堂</figcaption>
           </figure>
         </div>
       </div>
@@ -103,19 +116,19 @@
       <div class="feature-list">
         <h3>施設の特徴</h3>
         <ul>
-          <li>部屋数12戸（6戸×2）</li>
-          <li>全戸リノベーション済み</li>
-          <li>ベッド・エアコン完備</li>
-          <li>Wi-Fi完備</li>
-          <li>閑静な住宅街</li>
-          <li>コンビニ徒歩1分・バス停徒歩10秒</li>
-          <li>洗面台4台・トイレ4基（共用部）</li>
+          <li>お部屋は全12室（6室×2）です。</li>
+          <li>すべてのお部屋をリノベーションしています。</li>
+          <li>ベッド・エアコンを備えています。</li>
+          <li>Wi-Fiを利用できます。</li>
+          <li>静かな住宅街にあります。</li>
+          <li>コンビニまで徒歩1分、バス停まで徒歩10秒</li>
+          <li>共用の洗面台が4台、トイレが4か所あります。</li>
         </ul>
       </div>
 
       <div class="feature-list">
         <h3>季節の行事</h3>
-        <p class="section-text">誕生日会・お正月・節分・お花見・クリスマス会など、季節ごとのイベントを行っています。季節ごとに特別食（鰻・蟹など）もご用意しています。</p>
+        <p class="section-text">誕生日会やお正月、節分、お花見、クリスマス会などの行事を行っています。季節に合わせて、うなぎや蟹などの特別な食事もご用意しています。</p>
       </div>
     </div>
   </section>
@@ -125,12 +138,12 @@
     <div class="section-inner">
       <h2 class="section-title">お部屋・暮らしについて</h2>
       <p class="section-text">
-        全戸リノベーション済みのお部屋は、きれいで清潔。ベッド・エアコン・Wi-Fiも完備し、快適な毎日をお過ごしいただけます。
+        すべてのお部屋をリノベーションし、きれいで清潔に整えています。ベッド・エアコン・Wi-Fiも備え、快適に過ごせます。
       </p>
 
       <div class="feature-list">
         <h3>広いお風呂</h3>
-        <p class="section-text">ゆったり使える広めのお風呂で、一日の疲れをくつろいでいやせます。</p>
+        <p class="section-text">広めのお風呂でゆったりくつろぎ、一日の疲れをいやせます。</p>
       </div>
 
       <div class="feature-list">
@@ -139,47 +152,56 @@
 
         <div class="gourmet-gallery">
           <figure class="gourmet-card" tabindex="0">
-            <img src="七夕そうめん.jpg" alt="七夕そうめん" loading="lazy">
+            <img src="assets/img/facility/tanabata-somen-refined.jpg" alt="七夕そうめん" loading="lazy">
             <figcaption>七夕そうめん</figcaption>
           </figure>
           <figure class="gourmet-card" tabindex="0">
-            <img src="手作りオムライス.jpg" alt="手作りオムライス" loading="lazy">
+            <img src="assets/img/facility/omurice-refined.jpg" alt="手作りオムライス" loading="lazy">
             <figcaption>手作りオムライス</figcaption>
           </figure>
           <figure class="gourmet-card" tabindex="0">
-            <img src="お正月の食事.jpg" alt="お正月の食事の様子" loading="lazy">
+            <img src="assets/img/facility/newyear-refined.jpg" alt="お正月の食事の様子" loading="lazy">
             <figcaption>お正月の食事</figcaption>
           </figure>
           <figure class="gourmet-card" tabindex="0">
-            <img src="季節のお食事　うなぎ.jpg" alt="季節のお食事（うなぎ）" loading="lazy">
+            <img src="assets/img/facility/seasonal-unagi-refined.jpg" alt="季節のお食事（うなぎ）" loading="lazy">
             <figcaption>季節のお食事（うなぎ）</figcaption>
           </figure>
           <figure class="gourmet-card" tabindex="0">
-            <img src="普段のお食事(微修正).jpg" alt="普段のお食事の様子" loading="lazy">
+            <img src="assets/img/facility/everyday-meal-refined.jpg" alt="普段のお食事の様子" loading="lazy">
             <figcaption>普段のお食事</figcaption>
           </figure>
           <figure class="gourmet-card" tabindex="0">
-            <img src="手巻き寿司.jpg" alt="手巻き寿司" loading="lazy">
+            <img src="assets/img/facility/temaki-sushi-refined.jpg" alt="手巻き寿司" loading="lazy">
             <figcaption>手巻き寿司</figcaption>
           </figure>
         </div>
-        <p class="section-note">※写真をクリックすると大きく表示されます。</p>
+        <p class="section-note">写真を選ぶと、大きく表示できます。</p>
       </div>
 
       <div class="feature-list">
         <h3>設備</h3>
         <ul>
-          <li>洗面台4台・トイレ4基</li>
-          <li>ユニットバス2か所・洗面台4か所・トイレ4か所</li>
+          <li>ユニットバスが2か所、洗面台とトイレがそれぞれ4か所あります。</li>
         </ul>
       </div>
 
       <div class="feature-list">
-        <h3>サービス内容</h3>
+        <h3>施設全体の間取り図</h3>
+        <figure class="floorplan">
+          <a href="assets/img/facility/floorplan.png" target="_blank" rel="noopener" aria-label="施設全体の間取り図を原寸で開く（新しいタブ）">
+            <img src="assets/img/facility/floorplan.png" alt="クマノミ園の居室・食堂・浴室・洗面台・トイレの配置を示す間取り図" width="1569" height="718" loading="lazy">
+          </a>
+          <figcaption>図を選ぶと、新しいタブで大きく表示できます。スマートフォンでも拡大してご覧いただけます。</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature-list">
+        <h3>暮らしのサポート</h3>
         <ul>
-          <li>食事提供（朝・夕）　※季節ごとに特別食あり（鰻・蟹など）</li>
+          <li>朝・夕の食事をご用意します。季節に合わせて、うなぎや蟹などの特別な食事もあります。</li>
           <li>健康管理</li>
-          <li>生活相談</li>
+          <li>暮らしのご相談</li>
           <li>緊急時の対応</li>
         </ul>
       </div>
@@ -198,7 +220,7 @@
         </p>
         <p class="section-note">
           ※区分指定がない場合は1か月以内に申請していただきます。<br>
-          ※「共同生活支援（体験）」も可。
+          ※「共同生活支援（体験）」もご利用いただけます。
         </p>
         <p class="section-note">空室状況はお問い合わせください。</p>
       </div>
@@ -209,7 +231,7 @@
         <div class="price-summary-grid">
 
           <div class="price-card">
-            <p class="price-card-label">月額利用の目安</p>
+            <p class="price-card-label">1か月の利用料金の目安</p>
             <p class="price-card-amount">83,460<span class="unit">円</span></p>
 
             <details class="price-accordion">
@@ -228,23 +250,23 @@
                     <div class="price-detail-row"><span>食費（おかず）</span><span>20,880円</span></div>
                     <div class="price-detail-sub">
                       <p>クックデリ　朝食240円／昼食360円／夕食360円</p>
-                      <p>全食利用の場合：平日22日 13,200円／休日8日 7,680円</p>
+                      <p>すべての食事を利用する場合：平日22日 13,200円／休日8日 7,680円</p>
                     </div>
                   </li>
                   <li>
                     <div class="price-detail-row"><span>食費（米、みそ汁、サラダ、フルーツ代）</span><span>8,160円</span></div>
                     <div class="price-detail-sub">
                       <p>1食120円</p>
-                      <p>全食利用の場合：平日22日 5,280円／休日8日 2,880円</p>
+                      <p>すべての食事を利用する場合：平日22日 5,280円／休日8日 2,880円</p>
                     </div>
                   </li>
                   <li>
                     <div class="price-detail-row"><span>水道光熱費</span><span>約15,000円</span></div>
-                    <div class="price-detail-sub"><p>※実費のため月によって変動</p></div>
+                    <div class="price-detail-sub"><p>実際にかかった費用のため、月によって金額が変わります。</p></div>
                   </li>
                   <li>
                     <div class="price-detail-row"><span>修繕積立金</span><span>1,000円</span></div>
-                    <div class="price-detail-sub"><p>※綺麗に使用した場合は全額返金</p></div>
+                    <div class="price-detail-sub"><p>きれいにお使いいただいた場合は、全額返金となります。</p></div>
                   </li>
                   <li>
                     <div class="price-detail-row"><span>消耗品費</span><span>3,000円</span></div>
@@ -270,7 +292,7 @@
               </summary>
 
               <div class="price-detail">
-                <p class="price-detail-note">夕食・朝食をクックデリ利用の場合</p>
+                <p class="price-detail-note">夕食・朝食にクックデリを利用する場合の目安です。</p>
                 <ul class="price-detail-list">
                   <li>
                     <div class="price-detail-row"><span>家賃</span><span>1,150円</span></div>
@@ -279,7 +301,7 @@
                     <div class="price-detail-row"><span>食費（クックデリ）</span><span>600円</span></div>
                     <div class="price-detail-sub">
                       <p>朝食240円／昼食360円／夕食360円</p>
-                      <p>今回の例では　夕食＋朝食　600円</p>
+                      <p>この例では、夕食と朝食を合わせて600円です。</p>
                     </div>
                   </li>
                   <li>
@@ -301,7 +323,7 @@
         </div>
 
         <p class="section-note price-footnote">
-          ※家賃補助1万円と朝の食事はご自身で用意されると<br class="pc-only">月額5～6万円ほどでご利用できます。
+          ※家賃補助1万円を利用し、朝食をご自身で用意される場合は、<br class="pc-only">月額5～6万円ほどが目安です。
         </p>
       </div>
     </div>
@@ -338,17 +360,17 @@
               <dd>奈良市般若寺町281-1 コーポヤナギ1階</dd>
             </div>
             <div>
-              <dt>TEL・FAX</dt>
+              <dt>電話・FAX</dt>
               <dd>0742-93-6488</dd>
             </div>
             <div>
-              <dt>mail</dt>
+              <dt>メール</dt>
               <dd>info@kumanomien.co.jp</dd>
             </div>
           </dl>
           <p class="section-text">
-            見学・体験入居・入居について、ご本人・ご家族からのご相談をお気軽にお問い合わせください。<br>
-            障がい福祉課、相談支援事業所、医療機関の方など、支援者の皆さまからのご連絡もお受けしております。
+            見学・体験入居・入居について、ご本人もご家族も、お気軽にご相談ください。<br>
+            障がい福祉課、相談支援事業所、医療機関など、支援者の皆さまからのご連絡もお待ちしています。
           </p>
         </div>
 
@@ -356,7 +378,7 @@
           <h3>お問い合わせフォーム</h3>
 
           <div class="form-success" id="formSuccess" hidden>
-            <p>お問い合わせありがとうございます。<br>内容を確認のうえ、担当者よりご連絡いたします。</p>
+            <p>お問い合わせありがとうございます。<br>内容を確認し、担当者からご連絡します。</p>
             <p class="form-success-note">このままページをご覧いただけます。</p>
           </div>
 
@@ -377,9 +399,9 @@
               <input type="tel" id="tel" name="tel" autocomplete="tel">
             </div>
             <div class="form-row">
-              <label for="category">ご相談種別 <span class="required">必須</span></label>
+              <label for="category">ご相談の種類 <span class="required">必須</span></label>
               <select id="category" name="category" required>
-                <option value="" disabled selected>選択してください</option>
+                <option value="" disabled selected>お選びください</option>
                 <option value="tour">見学について</option>
                 <option value="trial">体験入居について</option>
                 <option value="admission">入居について</option>
