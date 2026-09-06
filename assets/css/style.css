@@ -148,7 +148,7 @@ a {
   display: flex;
   width: max-content;
   height: 100%;
-  animation: hero-marquee 32s linear infinite;
+  animation: hero-marquee 64s linear infinite;
   will-change: transform;
 }
 .hero-panel {
@@ -177,7 +177,7 @@ a {
 .hero-motion:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 @media (max-width: 767px) {
   .hero { --hero-height: clamp(500px, 76svh, 610px); }
-  .hero-track { animation-duration: 34s; }
+  .hero-track { animation-duration: 68s; }
   .hero-panel { max-width: 118vw; }
   .hero-panel img { object-position: 62% 45%; }
   .hero-scrim { background: linear-gradient(90deg, rgba(20,29,30,.4), rgba(20,29,30,.1)), linear-gradient(0deg, rgba(20,29,30,.75), transparent 90%); }
