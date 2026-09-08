@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ヒーロー写真スライドの一時停止操作
+  var hero = document.querySelector(".hero");
+  var motionButton = document.querySelector(".hero-motion");
+  if (hero && motionButton) {
+    motionButton.addEventListener("click", function () {
+      var paused = hero.classList.toggle("is-paused");
+      motionButton.setAttribute("aria-pressed", String(paused));
+      motionButton.setAttribute("aria-label", paused ? "写真の動きを再開" : "写真の動きを停止");
+      motionButton.textContent = paused ? "再生" : "一時停止";
+    });
+  }
+
   // Formspree標準POST送信後の ?sent=true パラメータでサンクスメッセージを表示
   var form = document.getElementById("contactForm");
   var successMessage = document.getElementById("formSuccess");
