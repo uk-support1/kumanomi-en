@@ -400,7 +400,6 @@ a {
   overflow: hidden;
   background: var(--color-bg-alt);
   box-shadow: 0 14px 28px rgba(47, 107, 124, 0.14);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .about-charm-room .about-charm-frame {
@@ -421,11 +420,6 @@ a {
 .about-charm-dining .about-charm-frame {
   border-radius: 50% 50% 38% 62% / 55% 42% 58% 45%;
   transform: rotate(4deg);
-}
-
-.about-charm:hover .about-charm-frame {
-  transform: translateY(-8px) scale(1.05) rotate(0deg);
-  box-shadow: 0 20px 36px rgba(47, 107, 124, 0.22);
 }
 
 .about-charm-frame img {
@@ -585,7 +579,7 @@ a {
 }
 
 .life-coral-lead {
-  margin: 28px 0;
+  margin: 38px 0;
   text-align: center;
   font-size: 1.05rem;
   font-weight: 700;
@@ -1493,6 +1487,10 @@ a {
 
   .about-charm-dining {
     margin-top: -10px;
+  }
+
+  .life-coral-lead {
+    margin: 52px 0;
   }
 
   .life-info-grid {
