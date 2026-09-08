@@ -389,6 +389,10 @@ a {
   transition-delay: 0.3s;
 }
 
+.about-charm:nth-child(4) {
+  transition-delay: 0.45s;
+}
+
 .about-charm-frame {
   margin: 0;
   width: 220px;
@@ -412,6 +416,11 @@ a {
 .about-charm-bath .about-charm-frame {
   border-radius: 55% 45% 40% 60% / 40% 55% 45% 60%;
   transform: rotate(-1.5deg);
+}
+
+.about-charm-dining .about-charm-frame {
+  border-radius: 50% 50% 38% 62% / 55% 42% 58% 45%;
+  transform: rotate(4deg);
 }
 
 .about-charm:hover .about-charm-frame {
@@ -498,32 +507,34 @@ a {
   max-width: 640px;
 }
 
-.life-highlights {
+.life-coral-intro {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 24px;
 }
 
-.life-highlight {
-  background: #fff;
-  border-radius: var(--radius);
-  padding: 22px 24px;
-  box-shadow: 0 4px 14px rgba(30, 34, 30, 0.05);
+.life-coral-intro-fish {
+  display: block;
+  width: 32px;
 }
 
-.life-highlight-title {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-ocean-dark);
+.life-coral-intro-fish img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.life-highlight-text {
+.life-coral-intro-text {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.85;
+  text-align: center;
+  font-size: 0.98rem;
   color: var(--color-text-light);
+}
+
+.life-after-coral {
+  margin-top: 56px;
 }
 
 .life-info-grid {
@@ -558,6 +569,45 @@ a {
 .life-info-list li {
   padding: 6px 0;
   border-bottom: 1px solid var(--color-border);
+}
+
+/* Floorplan (間取り図) */
+.life-floorplan {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.life-floorplan-figure {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 320px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(30, 34, 30, 0.08);
+  cursor: pointer;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.life-floorplan-figure:hover,
+.life-floorplan-figure:focus-visible {
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(30, 34, 30, 0.14);
+  outline: none;
+}
+
+.life-floorplan-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.life-floorplan-text {
+  margin: 16px auto 0;
+  max-width: 420px;
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--color-text-light);
 }
 
 .life-coral-lead {
@@ -1011,6 +1061,69 @@ a {
   color: var(--color-text);
 }
 
+/* Floorplan modal (間取り図の拡大表示：サンゴギャラリーとは独立) */
+.floorplan-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.floorplan-modal[hidden] {
+  display: none;
+}
+
+.floorplan-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 24, 25, 0.55);
+}
+
+.floorplan-modal-dialog {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 44px 20px 20px;
+}
+
+.floorplan-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floorplan-modal-close:hover {
+  background: var(--color-border);
+}
+
+.floorplan-modal-dialog img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+
 /* Feature list */
 .feature-list {
   margin-bottom: 24px;
@@ -1388,7 +1501,12 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 32px;
+    gap: 24px;
+  }
+
+  .about-charm-frame {
+    width: 196px;
+    height: 196px;
   }
 
   .about-charm-meal {
@@ -1399,18 +1517,18 @@ a {
     margin-top: 24px;
   }
 
-  .life-highlights {
-    flex-direction: row;
-    gap: 20px;
-  }
-
-  .life-highlight {
-    flex: 1;
+  .about-charm-dining {
+    margin-top: -10px;
   }
 
   .life-info-grid {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
+  }
+
+  .life-floorplan-figure {
+    max-width: min(25vw, 380px);
+    min-width: 260px;
   }
 
   .coral-scene-inner {

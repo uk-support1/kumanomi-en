@@ -87,6 +87,15 @@
             </figure>
             <p class="about-charm-label">広いお風呂</p>
           </div>
+
+          <div class="about-charm about-charm-dining" data-reveal>
+            <span class="about-bubble about-bubble-a" aria-hidden="true"></span>
+            <span class="about-bubble about-bubble-b" aria-hidden="true"></span>
+            <figure class="about-charm-frame">
+              <img src="living-corrected.png" alt="クマノミ園の食堂" loading="lazy">
+            </figure>
+            <p class="about-charm-label">くつろぎの食堂</p>
+          </div>
         </div>
       </div>
 
@@ -106,49 +115,11 @@
         ベッド・エアコン・Wi-Fiも備え、心地よく暮らせる環境を整えています。
       </p>
 
-      <div class="life-highlights">
-        <div class="life-highlight">
-          <p class="life-highlight-title">ゆったり広いお風呂</p>
-          <p class="life-highlight-text">
-            広めのお風呂で、ゆっくりとくつろぐ時間を。<br>
-            毎日の疲れを癒しながら、ほっとできるひとときをお過ごしいただけます。
-          </p>
-        </div>
-        <div class="life-highlight">
-          <p class="life-highlight-title">毎日の食事の楽しみ</p>
-          <p class="life-highlight-text">
-            朝・夕のお食事はもちろん、季節に合わせた特別メニューもご用意しています。<br>
-            温かい食事が、毎日の楽しみのひとつになるよう心がけています。
-          </p>
-        </div>
-        <div class="life-highlight">
-          <p class="life-highlight-title">季節のお楽しみ</p>
-          <p class="life-highlight-text">
-            お正月やお花見、クリスマスなど、季節を感じられる行事を行っています。<br>
-            うなぎや蟹など、行事に合わせた特別なお食事も楽しんでいただけます。
-          </p>
-        </div>
-      </div>
-
-      <div class="life-info-grid">
-        <div class="life-info-block">
-          <h3 class="life-info-title">サービス内容</h3>
-          <ul class="life-info-list">
-            <li>朝・夕のお食事</li>
-            <li>健康管理</li>
-            <li>日々の生活相談</li>
-            <li>緊急時の対応</li>
-          </ul>
-        </div>
-        <div class="life-info-block">
-          <h3 class="life-info-title">設備</h3>
-          <ul class="life-info-list">
-            <li>ベッド・エアコン・Wi-Fi</li>
-            <li>洗面設備</li>
-            <li>トイレ</li>
-            <li>浴室</li>
-          </ul>
-        </div>
+      <div class="life-coral-intro">
+        <span class="life-coral-intro-fish" aria-hidden="true">
+          <img src="assets/img/clownfish-mascot.png" alt="" loading="lazy">
+        </span>
+        <p class="life-coral-intro-text">クマノミ園で過ごす毎日を、写真とともに少しご紹介します。</p>
       </div>
 
       <p class="life-coral-lead">クマノミ園での暮らしを、少しのぞいてみませんか？</p>
@@ -221,7 +192,45 @@
         <p class="coral-label">季節のお楽しみ</p>
       </div>
     </div>
+
+    <div class="section-inner life-after-coral">
+      <div class="life-info-grid">
+        <div class="life-info-block">
+          <h3 class="life-info-title">サービス内容</h3>
+          <ul class="life-info-list">
+            <li>朝・夕のお食事</li>
+            <li>健康管理</li>
+            <li>日々の生活相談</li>
+            <li>緊急時の対応</li>
+          </ul>
+        </div>
+        <div class="life-info-block">
+          <h3 class="life-info-title">設備</h3>
+          <ul class="life-info-list">
+            <li>ベッド・エアコン・Wi-Fi</li>
+            <li>洗面設備</li>
+            <li>トイレ</li>
+            <li>浴室</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="life-floorplan">
+        <figure class="life-floorplan-figure" id="floorplanTrigger" tabindex="0" role="button" aria-label="間取り図を大きく見る">
+          <img src="floorplan.png" alt="クマノミ園の間取り図" loading="lazy">
+        </figure>
+        <p class="life-floorplan-text">共用スペースと居室をゆったり配置し、安心して過ごせる生活空間を整えています。</p>
+      </div>
+    </div>
   </section>
+
+  <div class="floorplan-modal" id="floorplanModal" hidden>
+    <div class="floorplan-modal-backdrop" id="floorplanModalBackdrop"></div>
+    <div class="floorplan-modal-dialog" role="dialog" aria-modal="true" aria-label="間取り図">
+      <button type="button" class="floorplan-modal-close" id="floorplanModalClose" aria-label="閉じる">&times;</button>
+      <img src="floorplan.png" alt="クマノミ園の間取り図">
+    </div>
+  </div>
 
   <div class="coral-gallery-modal" id="coralGalleryModal" hidden>
     <div class="coral-gallery-backdrop" id="coralGalleryBackdrop"></div>

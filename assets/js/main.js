@@ -167,4 +167,36 @@ document.addEventListener("DOMContentLoaded", function () {
       if (e.key === "ArrowLeft") showPrev();
     });
   })();
+
+  // ===== 間取り図モーダル（サンゴギャラリーとは独立した専用処理） =====
+  (function () {
+    var trigger = document.getElementById("floorplanTrigger");
+    var modal = document.getElementById("floorplanModal");
+    var closeBtn = document.getElementById("floorplanModalClose");
+    var backdrop = document.getElementById("floorplanModalBackdrop");
+    if (!trigger || !modal) return;
+
+    var openModal = function () {
+      modal.hidden = false;
+    };
+    var closeModal = function () {
+      modal.hidden = true;
+    };
+
+    trigger.addEventListener("click", openModal);
+    trigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (backdrop) backdrop.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (modal.hidden) return;
+      if (e.key === "Escape") closeModal();
+    });
+  })();
 });
