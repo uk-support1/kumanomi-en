@@ -818,28 +818,62 @@ a {
   --exit-delay: 0s;
 }
 
+.coral-cluster-room .coral-photo {
+  width: 90px;
+}
+
+.coral-cluster-room .coral-photo img {
+  height: 76px;
+}
+
 .coral-cluster-room .coral-photo-1 {
-  left: -6%;
-  bottom: 4%;
-  --rot: -5deg;
-  --dx: 78px;
-  --dy: 34px;
+  left: -34%;
+  bottom: 0%;
+  --rot: -10deg;
+  --dx: 88px;
+  --dy: 18px;
+  --enter-delay: 0s;
+  --exit-delay: 0.4s;
 }
 
 .coral-cluster-room .coral-photo-2 {
-  left: 32%;
-  bottom: 15%;
-  --rot: 2deg;
-  --dx: 6px;
-  --dy: 50px;
+  left: -1%;
+  bottom: 16%;
+  --rot: -5deg;
+  --dx: 42px;
+  --dy: 40px;
+  --enter-delay: 0.1s;
+  --exit-delay: 0.3s;
 }
 
 .coral-cluster-room .coral-photo-3 {
-  right: -6%;
-  bottom: 8%;
+  left: 34%;
+  bottom: 26%;
+  --rot: 0deg;
+  --dx: 0px;
+  --dy: 50px;
+  --enter-delay: 0.2s;
+  --exit-delay: 0.2s;
+}
+
+.coral-cluster-room .coral-photo-4 {
+  right: -1%;
+  bottom: 16%;
   --rot: 5deg;
-  --dx: -78px;
-  --dy: 34px;
+  --dx: -42px;
+  --dy: 40px;
+  --enter-delay: 0.3s;
+  --exit-delay: 0.1s;
+}
+
+.coral-cluster-room .coral-photo-5 {
+  right: -34%;
+  bottom: 0%;
+  --rot: 10deg;
+  --dx: -88px;
+  --dy: 18px;
+  --enter-delay: 0.4s;
+  --exit-delay: 0s;
 }
 
 /* お食事：扇状に広がる配置 */
@@ -1033,6 +1067,16 @@ a {
   display: block;
   margin: 0 auto;
   border-radius: var(--radius);
+}
+
+/* 縦長写真：横長写真と同じワイドな箱だと左右の余白が大きくなるため、
+   写真の比率に合わせてモーダル自体を細身にする */
+.coral-gallery-modal.is-portrait .coral-gallery-dialog {
+  max-width: 380px;
+}
+
+.coral-gallery-modal.is-portrait .coral-gallery-media img {
+  max-height: 62vh;
 }
 
 .coral-gallery-nav {
@@ -1587,19 +1631,37 @@ a {
     height: 118px;
   }
 
+  .coral-cluster-room .coral-photo {
+    width: 108px;
+  }
+
+  .coral-cluster-room .coral-photo img {
+    height: 92px;
+  }
+
   .coral-cluster-room .coral-photo-1 {
-    --dx: 100px;
-    --dy: 38px;
+    --dx: 96px;
+    --dy: 30px;
   }
 
   .coral-cluster-room .coral-photo-2 {
-    --dx: 8px;
-    --dy: 58px;
+    --dx: 46px;
+    --dy: 50px;
   }
 
   .coral-cluster-room .coral-photo-3 {
-    --dx: -100px;
-    --dy: 38px;
+    --dx: 0px;
+    --dy: 60px;
+  }
+
+  .coral-cluster-room .coral-photo-4 {
+    --dx: -46px;
+    --dy: 50px;
+  }
+
+  .coral-cluster-room .coral-photo-5 {
+    --dx: -96px;
+    --dy: 30px;
   }
 
   .coral-cluster-meal .coral-photo-1 {

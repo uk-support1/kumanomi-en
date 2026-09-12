@@ -112,12 +112,22 @@ document.addEventListener("DOMContentLoaded", function () {
     var currentPhotos = [];
     var currentIndex = 0;
 
+    var updateOrientation = function () {
+      var isPortrait = modalImg.naturalHeight > modalImg.naturalWidth;
+      modal.classList.toggle("is-portrait", isPortrait);
+    };
+
     var renderCurrentPhoto = function () {
       var photo = currentPhotos[currentIndex];
       if (!photo) return;
+      modal.classList.remove("is-portrait");
+      modalImg.onload = updateOrientation;
       modalImg.src = photo.src;
       modalImg.alt = photo.alt;
       if (captionEl) captionEl.textContent = photo.caption;
+      if (modalImg.complete && modalImg.naturalWidth) {
+        updateOrientation();
+      }
     };
 
     var openGallery = function (cluster, startIndex) {
