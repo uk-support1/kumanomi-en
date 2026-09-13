@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
       var paused = hero.classList.toggle("is-paused");
       motionButton.setAttribute("aria-pressed", String(paused));
       motionButton.setAttribute("aria-label", paused ? "写真の動きを再開" : "写真の動きを停止");
-      motionButton.textContent = paused ? "再生" : "一時停止";
     });
   }
 
@@ -112,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var currentPhotos = [];
     var currentIndex = 0;
+    var currentCategory = "";
 
     var updateOrientation = function () {
       var isPortrait = modalImg.naturalHeight > modalImg.naturalWidth;
@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
       modalImg.onload = updateOrientation;
       modalImg.src = photo.src;
       modalImg.alt = photo.alt;
+      // 写真ごとの表題がある場合はカテゴリ名を出さず、表題だけを表示する
+      if (categoryEl) categoryEl.textContent = photo.title ? "" : currentCategory;
       if (titleEl) titleEl.textContent = photo.title;
       if (captionEl) captionEl.textContent = photo.caption;
       if (modalImg.complete && modalImg.naturalWidth) {
@@ -144,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       });
       currentIndex = startIndex;
-      if (categoryEl) categoryEl.textContent = cluster.getAttribute("data-category") || "";
+      currentCategory = cluster.getAttribute("data-category") || "";
       renderCurrentPhoto();
       modal.hidden = false;
     };
