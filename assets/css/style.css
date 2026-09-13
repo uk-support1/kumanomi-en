@@ -940,28 +940,46 @@ a {
 }
 
 /* お食事：扇状に広がる配置 */
+.coral-cluster-meal .coral-photo {
+  width: 96px;
+}
+
+.coral-cluster-meal .coral-photo img {
+  height: 82px;
+}
+
 .coral-cluster-meal .coral-photo-1 {
-  left: -10%;
-  bottom: 2%;
-  --rot: -12deg;
+  left: -16%;
+  bottom: 0%;
+  --rot: -10deg;
   --dx: 62px;
   --dy: 22px;
 }
 
 .coral-cluster-meal .coral-photo-2 {
-  left: 30%;
-  bottom: 26%;
-  --rot: 0deg;
-  --dx: 4px;
-  --dy: 55px;
+  left: 16%;
+  bottom: 20%;
+  --rot: 4deg;
+  --dx: 20px;
+  --dy: 50px;
 }
 
 .coral-cluster-meal .coral-photo-3 {
-  right: -10%;
+  left: 44%;
   bottom: 2%;
-  --rot: 12deg;
+  --rot: -6deg;
+  --dx: -20px;
+  --dy: 28px;
+}
+
+.coral-cluster-meal .coral-photo-4 {
+  right: -16%;
+  bottom: 12%;
+  --rot: 9deg;
   --dx: -62px;
-  --dy: 22px;
+  --dy: 34px;
+  --enter-delay: 0.3s;
+  --exit-delay: 0s;
 }
 
 /* 季節のお楽しみ：少し上方向に展開する配置 */
@@ -1141,13 +1159,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
 }
 
 .coral-gallery-media img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 40vh;
   width: auto;
   height: auto;
   display: block;
@@ -1159,6 +1177,10 @@ a {
    写真の比率に合わせてモーダル自体を細身にする */
 .coral-gallery-modal.is-portrait .coral-gallery-dialog {
   max-width: 380px;
+}
+
+.coral-gallery-modal.is-portrait .coral-gallery-media img {
+  max-height: 46vh;
 }
 
 .coral-gallery-nav {
@@ -1194,7 +1216,7 @@ a {
 
 .coral-gallery-info {
   flex: 0 0 auto;
-  margin-top: 10px;
+  margin-top: 14px;
   text-align: center;
 }
 
@@ -1783,19 +1805,32 @@ a {
     height: 80px;
   }
 
+  .coral-cluster-meal .coral-photo {
+    width: 112px;
+  }
+
+  .coral-cluster-meal .coral-photo img {
+    height: 96px;
+  }
+
   .coral-cluster-meal .coral-photo-1 {
     --dx: 78px;
     --dy: 26px;
   }
 
   .coral-cluster-meal .coral-photo-2 {
-    --dx: 6px;
-    --dy: 62px;
+    --dx: 26px;
+    --dy: 58px;
   }
 
   .coral-cluster-meal .coral-photo-3 {
+    --dx: -26px;
+    --dy: 34px;
+  }
+
+  .coral-cluster-meal .coral-photo-4 {
     --dx: -78px;
-    --dy: 26px;
+    --dy: 40px;
   }
 
   .coral-cluster-season .coral-photo {
@@ -1832,6 +1867,14 @@ a {
 
   .coral-gallery-dialog {
     padding: 44px 44px 18px;
+  }
+
+  .coral-gallery-media img {
+    max-height: 46vh;
+  }
+
+  .coral-gallery-modal.is-portrait .coral-gallery-media img {
+    max-height: 54vh;
   }
 
   .coral-gallery-prev {
