@@ -819,60 +819,70 @@ a {
 }
 
 .coral-cluster-room .coral-photo {
-  width: 90px;
+  width: 80px;
 }
 
 .coral-cluster-room .coral-photo img {
-  height: 76px;
+  height: 68px;
 }
 
 .coral-cluster-room .coral-photo-1 {
-  left: -34%;
+  left: -9%;
   bottom: 0%;
   --rot: -10deg;
-  --dx: 88px;
-  --dy: 18px;
+  --dx: 54px;
+  --dy: 16px;
   --enter-delay: 0s;
-  --exit-delay: 0.4s;
+  --exit-delay: 0.5s;
 }
 
 .coral-cluster-room .coral-photo-2 {
-  left: -1%;
-  bottom: 16%;
-  --rot: -5deg;
-  --dx: 42px;
-  --dy: 40px;
+  left: 2%;
+  bottom: 14%;
+  --rot: -6deg;
+  --dx: 32px;
+  --dy: 36px;
   --enter-delay: 0.1s;
-  --exit-delay: 0.3s;
+  --exit-delay: 0.4s;
 }
 
 .coral-cluster-room .coral-photo-3 {
-  left: 34%;
-  bottom: 26%;
-  --rot: 0deg;
-  --dx: 0px;
-  --dy: 50px;
+  left: 20%;
+  bottom: 24%;
+  --rot: -2deg;
+  --dx: 12px;
+  --dy: 48px;
   --enter-delay: 0.2s;
-  --exit-delay: 0.2s;
+  --exit-delay: 0.3s;
 }
 
 .coral-cluster-room .coral-photo-4 {
-  right: -1%;
-  bottom: 16%;
-  --rot: 5deg;
-  --dx: -42px;
-  --dy: 40px;
+  right: 20%;
+  bottom: 24%;
+  --rot: 2deg;
+  --dx: -12px;
+  --dy: 48px;
   --enter-delay: 0.3s;
-  --exit-delay: 0.1s;
+  --exit-delay: 0.2s;
 }
 
 .coral-cluster-room .coral-photo-5 {
-  right: -34%;
+  right: 2%;
+  bottom: 14%;
+  --rot: 6deg;
+  --dx: -32px;
+  --dy: 36px;
+  --enter-delay: 0.4s;
+  --exit-delay: 0.1s;
+}
+
+.coral-cluster-room .coral-photo-6 {
+  right: -9%;
   bottom: 0%;
   --rot: 10deg;
-  --dx: -88px;
-  --dy: 18px;
-  --enter-delay: 0.4s;
+  --dx: -54px;
+  --dy: 16px;
+  --enter-delay: 0.5s;
   --exit-delay: 0s;
 }
 
@@ -902,28 +912,46 @@ a {
 }
 
 /* 季節のお楽しみ：少し上方向に展開する配置 */
+.coral-cluster-season .coral-photo {
+  width: 102px;
+}
+
+.coral-cluster-season .coral-photo img {
+  height: 86px;
+}
+
 .coral-cluster-season .coral-photo-1 {
-  left: 6%;
-  bottom: 6%;
+  left: 2%;
+  bottom: 4%;
   --rot: -4deg;
   --dx: 42px;
   --dy: 34px;
 }
 
 .coral-cluster-season .coral-photo-2 {
-  left: 30%;
-  bottom: 28%;
+  left: 24%;
+  bottom: 22%;
   --rot: 3deg;
   --dx: -8px;
   --dy: 46px;
 }
 
 .coral-cluster-season .coral-photo-3 {
-  left: 52%;
-  bottom: 46%;
+  left: 44%;
+  bottom: 38%;
   --rot: -3deg;
   --dx: -42px;
   --dy: 55px;
+}
+
+.coral-cluster-season .coral-photo-4 {
+  left: 64%;
+  bottom: 54%;
+  --rot: 4deg;
+  --dx: -66px;
+  --dy: 62px;
+  --enter-delay: 0.3s;
+  --exit-delay: 0s;
 }
 
 /* Bubble accents (rising, reusing the about-bubble visual language) */
@@ -1632,36 +1660,41 @@ a {
   }
 
   .coral-cluster-room .coral-photo {
-    width: 108px;
+    width: 96px;
   }
 
   .coral-cluster-room .coral-photo img {
-    height: 92px;
+    height: 82px;
   }
 
   .coral-cluster-room .coral-photo-1 {
-    --dx: 96px;
-    --dy: 30px;
+    --dx: 104px;
+    --dy: 24px;
   }
 
   .coral-cluster-room .coral-photo-2 {
-    --dx: 46px;
-    --dy: 50px;
+    --dx: 58px;
+    --dy: 46px;
   }
 
   .coral-cluster-room .coral-photo-3 {
-    --dx: 0px;
-    --dy: 60px;
+    --dx: 18px;
+    --dy: 58px;
   }
 
   .coral-cluster-room .coral-photo-4 {
-    --dx: -46px;
-    --dy: 50px;
+    --dx: -18px;
+    --dy: 58px;
   }
 
   .coral-cluster-room .coral-photo-5 {
-    --dx: -96px;
-    --dy: 30px;
+    --dx: -58px;
+    --dy: 46px;
+  }
+
+  .coral-cluster-room .coral-photo-6 {
+    --dx: -104px;
+    --dy: 24px;
   }
 
   .coral-cluster-meal .coral-photo-1 {
@@ -1679,6 +1712,14 @@ a {
     --dy: 26px;
   }
 
+  .coral-cluster-season .coral-photo {
+    width: 122px;
+  }
+
+  .coral-cluster-season .coral-photo img {
+    height: 104px;
+  }
+
   .coral-cluster-season .coral-photo-1 {
     --dx: 52px;
     --dy: 36px;
@@ -1692,6 +1733,11 @@ a {
   .coral-cluster-season .coral-photo-3 {
     --dx: -52px;
     --dy: 60px;
+  }
+
+  .coral-cluster-season .coral-photo-4 {
+    --dx: -80px;
+    --dy: 72px;
   }
 
   .coral-fish {
