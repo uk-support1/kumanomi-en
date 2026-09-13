@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!clusters.length || !modal || !modalImg) return;
 
     var categoryEl = document.getElementById("coralGalleryCategory");
+    var titleEl = document.getElementById("coralGalleryTitle");
     var captionEl = document.getElementById("coralGalleryCaption");
     var closeBtn = document.getElementById("coralGalleryClose");
     var backdrop = document.getElementById("coralGalleryBackdrop");
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modalImg.onload = updateOrientation;
       modalImg.src = photo.src;
       modalImg.alt = photo.alt;
+      if (titleEl) titleEl.textContent = photo.title;
       if (captionEl) captionEl.textContent = photo.caption;
       if (modalImg.complete && modalImg.naturalWidth) {
         updateOrientation();
@@ -137,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return {
           src: im.getAttribute("src"),
           alt: im.getAttribute("alt") || "",
+          title: fig.getAttribute("data-title") || "",
           caption: fig.getAttribute("data-caption") || ""
         };
       });

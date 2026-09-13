@@ -818,6 +818,7 @@ a {
   --exit-delay: 0s;
 }
 
+/* ホームのようす：規則正しい扇形ではなく、サンゴの周りから自然に飛び出す不規則配置 */
 .coral-cluster-room .coral-photo {
   width: 80px;
 }
@@ -827,63 +828,74 @@ a {
 }
 
 .coral-cluster-room .coral-photo-1 {
-  left: -9%;
+  width: 88px;
+  left: -11%;
   bottom: 0%;
-  --rot: -10deg;
-  --dx: 54px;
-  --dy: 16px;
+  --rot: -8deg;
+  --dx: 70px;
+  --dy: 14px;
   --enter-delay: 0s;
-  --exit-delay: 0.5s;
-}
-
-.coral-cluster-room .coral-photo-2 {
-  left: 2%;
-  bottom: 14%;
-  --rot: -6deg;
-  --dx: 32px;
-  --dy: 36px;
-  --enter-delay: 0.1s;
   --exit-delay: 0.4s;
 }
 
-.coral-cluster-room .coral-photo-3 {
-  left: 20%;
-  bottom: 24%;
-  --rot: -2deg;
-  --dx: 12px;
-  --dy: 48px;
-  --enter-delay: 0.2s;
+.coral-cluster-room .coral-photo-1 img {
+  height: 74px;
+}
+
+.coral-cluster-room .coral-photo-2 {
+  width: 70px;
+  left: 11%;
+  bottom: 22%;
+  --rot: 6deg;
+  --dx: 34px;
+  --dy: 38px;
+  --enter-delay: 0.1s;
   --exit-delay: 0.3s;
 }
 
-.coral-cluster-room .coral-photo-4 {
-  right: 20%;
-  bottom: 24%;
-  --rot: 2deg;
-  --dx: -12px;
-  --dy: 48px;
-  --enter-delay: 0.3s;
+.coral-cluster-room .coral-photo-2 img {
+  height: 60px;
+}
+
+.coral-cluster-room .coral-photo-3 {
+  width: 80px;
+  left: 34%;
+  bottom: 6%;
+  --rot: -5deg;
+  --dx: 6px;
+  --dy: 50px;
+  --enter-delay: 0.2s;
   --exit-delay: 0.2s;
 }
 
-.coral-cluster-room .coral-photo-5 {
-  right: 2%;
-  bottom: 14%;
-  --rot: 6deg;
-  --dx: -32px;
-  --dy: 36px;
-  --enter-delay: 0.4s;
+.coral-cluster-room .coral-photo-4 {
+  width: 76px;
+  right: 11%;
+  bottom: 26%;
+  --rot: 9deg;
+  --dx: -30px;
+  --dy: 40px;
+  --enter-delay: 0.3s;
   --exit-delay: 0.1s;
 }
 
-.coral-cluster-room .coral-photo-6 {
-  right: -9%;
-  bottom: 0%;
-  --rot: 10deg;
-  --dx: -54px;
+.coral-cluster-room .coral-photo-4 img {
+  height: 64px;
+}
+
+.coral-cluster-room .coral-photo-5 {
+  width: 90px;
+  right: -10%;
+  bottom: 2%;
+  --rot: -7deg;
+  --dx: -66px;
   --dy: 16px;
-  --enter-delay: 0.5s;
+  --enter-delay: 0.4s;
   --exit-delay: 0s;
+}
+
+.coral-cluster-room .coral-photo-5 img {
+  height: 76px;
 }
 
 /* お食事：扇状に広がる配置 */
@@ -1149,6 +1161,17 @@ a {
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--color-coral-dark);
+}
+
+.coral-gallery-title {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-ocean-dark);
+}
+
+.coral-gallery-title:empty {
+  display: none;
 }
 
 .coral-gallery-caption {
@@ -1668,33 +1691,49 @@ a {
   }
 
   .coral-cluster-room .coral-photo-1 {
-    --dx: 104px;
-    --dy: 24px;
+    width: 92px;
+    --dx: 84px;
+    --dy: 20px;
+  }
+
+  .coral-cluster-room .coral-photo-1 img {
+    height: 78px;
   }
 
   .coral-cluster-room .coral-photo-2 {
-    --dx: 58px;
+    width: 72px;
+    --dx: 42px;
     --dy: 46px;
+  }
+
+  .coral-cluster-room .coral-photo-2 img {
+    height: 62px;
   }
 
   .coral-cluster-room .coral-photo-3 {
-    --dx: 18px;
-    --dy: 58px;
+    width: 84px;
+    --dx: 8px;
+    --dy: 60px;
   }
 
   .coral-cluster-room .coral-photo-4 {
-    --dx: -18px;
-    --dy: 58px;
+    width: 80px;
+    --dx: -36px;
+    --dy: 48px;
+  }
+
+  .coral-cluster-room .coral-photo-4 img {
+    height: 68px;
   }
 
   .coral-cluster-room .coral-photo-5 {
-    --dx: -58px;
-    --dy: 46px;
+    width: 94px;
+    --dx: -80px;
+    --dy: 20px;
   }
 
-  .coral-cluster-room .coral-photo-6 {
-    --dx: -104px;
-    --dy: 24px;
+  .coral-cluster-room .coral-photo-5 img {
+    height: 80px;
   }
 
   .coral-cluster-meal .coral-photo-1 {
