@@ -323,10 +323,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var noticeSection = document.querySelector(".notice-section");
     var noticeCard = document.getElementById("noticeCard");
     var noticeContent = document.getElementById("noticeContent");
+    var noticeSummaryLabel = document.getElementById("noticeSummaryLabel");
+    var noticeNavLink = document.getElementById("noticeNavLink");
     if (!noticeSection || !noticeCard || !noticeContent) return;
 
     var hideNotice = function () {
       noticeSection.hidden = true;
+      if (noticeNavLink) noticeNavLink.hidden = true;
     };
 
     var callbackName = "__kumanomiNoticeCallback";
@@ -354,7 +357,13 @@ document.addEventListener("DOMContentLoaded", function () {
           hideNotice();
           return;
         }
+        var pageTitle = title || "";
         noticeContent.innerHTML = safeHtml;
+        if (noticeSummaryLabel) noticeSummaryLabel.textContent = pageTitle;
+        if (noticeNavLink) {
+          noticeNavLink.textContent = pageTitle;
+          noticeNavLink.hidden = false;
+        }
       } catch (e) {
         hideNotice();
       }
