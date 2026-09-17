@@ -235,6 +235,91 @@ document.addEventListener("DOMContentLoaded", function () {
       pageTitle: "お知らせ（クマノミ園様のテスト用）" // テスト用（本番は「お知らせ」に差し替え）
     };
 
+    // Blogger本文をそのままinnerHTMLへ渡さず、許可した要素・属性だけを残すサニタイズ処理。
+    // <template>でパースするだけでは埋め込みscript等は動かないが、
+    // 実DOMへ挿入した際にonerror等のイベント属性は発火しうるため、必ずこの処理を通す。
+    var ALLOWED_TAGS = {
+      P: true, BR: true,
+      STRONG: true, B: true, EM: true, I: true, U: true,
+      UL: true, OL: true, LI: true,
+      H2: true, H3: true, H4: true,
+      A: true, IMG: true,
+      SPAN: true, DIV: true, BLOCKQUOTE: true, HR: true, SUB: true, SUP: true
+    };
+    // 中身ごと除去する要素（スクリプト実行やフォーム送信等につながるもの）。
+    var STRIP_WITH_CONTENTS = {
+      SCRIPT: true, STYLE: true, IFRAME: true, OBJECT: true, EMBED: true,
+      FORM: true, LINK: true, META: true, NOSCRIPT: true, TEMPLATE: true,
+      SVG: true, MATH: true, BUTTON: true, INPUT: true, TEXTAREA: true,
+      SELECT: true, VIDEO: true, AUDIO: true, SOURCE: true, TRACK: true, BASE: true
+    };
+    var ALLOWED_ATTRS = {
+      A: ["href"],
+      IMG: ["src", "alt", "width", "height"]
+    };
+
+    var isSafeUrl = function (value, allowedSchemes) {
+      var cleaned = String(value)
+        .replace(/[ - ]/g, "")
+        .toLowerCase();
+      for (var i = 0; i < allowedSchemes.length; i++) {
+        if (cleaned.indexOf(allowedSchemes[i]) === 0) return true;
+      }
+      return false;
+    };
+
+    var sanitizeTree = function (node) {
+      var children = Array.prototype.slice.call(node.childNodes);
+      children.forEach(function (child) {
+        if (child.nodeType === Node.COMMENT_NODE) {
+          child.parentNode.removeChild(child);
+          return;
+        }
+        if (child.nodeType !== Node.ELEMENT_NODE) {
+          return; // テキストノードはそのまま
+        }
+        var tag = child.tagName;
+        if (STRIP_WITH_CONTENTS[tag]) {
+          child.parentNode.removeChild(child);
+          return;
+        }
+        // 先に子要素を再帰的にサニタイズしてから、このタグ自体の可否を判定する
+        // （許可されないタグの中に危険な要素が入れ子になっているケースを取りこぼさないため）
+        sanitizeTree(child);
+        if (!ALLOWED_TAGS[tag]) {
+          // タグは許可しないが、既にサニタイズ済みの中身はそのまま残して展開する
+          while (child.firstChild) {
+            node.insertBefore(child.firstChild, child);
+          }
+          child.parentNode.removeChild(child);
+          return;
+        }
+        var allowedAttrs = ALLOWED_ATTRS[tag] || [];
+        Array.prototype.slice.call(child.attributes).forEach(function (attr) {
+          if (allowedAttrs.indexOf(attr.name.toLowerCase()) === -1) {
+            child.removeAttribute(attr.name);
+          }
+        });
+        if (tag === "A" && child.hasAttribute("href")) {
+          if (!isSafeUrl(child.getAttribute("href"), ["http:", "https:", "mailto:"])) {
+            child.removeAttribute("href");
+          }
+        }
+        if (tag === "IMG" && child.hasAttribute("src")) {
+          if (!isSafeUrl(child.getAttribute("src"), ["http:", "https:", "data:image/"])) {
+            child.removeAttribute("src");
+          }
+        }
+      });
+    };
+
+    var sanitizeNoticeHtml = function (html) {
+      var template = document.createElement("template");
+      template.innerHTML = html;
+      sanitizeTree(template.content);
+      return template.innerHTML;
+    };
+
     var noticeSection = document.querySelector(".notice-section");
     var noticeCard = document.getElementById("noticeCard");
     var noticeContent = document.getElementById("noticeContent");
@@ -259,12 +344,17 @@ document.addEventListener("DOMContentLoaded", function () {
             break;
           }
         }
-        var html = match && match.content && match.content.$t;
-        if (!match || !html || !html.replace(/<[^>]*>/g, "").trim()) {
+        var rawHtml = match && match.content && match.content.$t;
+        if (!match || !rawHtml || !rawHtml.replace(/<[^>]*>/g, "").trim()) {
           hideNotice();
           return;
         }
-        noticeContent.innerHTML = html;
+        var safeHtml = sanitizeNoticeHtml(rawHtml);
+        if (!safeHtml || !safeHtml.replace(/<[^>]*>/g, "").trim()) {
+          hideNotice();
+          return;
+        }
+        noticeContent.innerHTML = safeHtml;
       } catch (e) {
         hideNotice();
       }
