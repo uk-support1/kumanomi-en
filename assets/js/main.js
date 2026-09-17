@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var isSafeUrl = function (value, allowedSchemes) {
       var cleaned = String(value)
-        .replace(/[ - ]/g, "")
+        .replace(/[\u0000-\u0020\u007f]/g, "")
         .toLowerCase();
       for (var i = 0; i < allowedSchemes.length; i++) {
         if (cleaned.indexOf(allowedSchemes[i]) === 0) return true;
