@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     var ALLOWED_ATTRS = {
       A: ["href"],
-      IMG: ["src", "alt", "width", "height"]
+      IMG: ["src", "alt", "width", "height", "border"]
     };
 
     var isSafeUrl = function (value, allowedSchemes) {
@@ -288,6 +288,130 @@ document.addEventListener("DOMContentLoaded", function () {
         if (cleaned.indexOf(allowedSchemes[i]) === 0) return true;
       }
       return false;
+    };
+
+    // ---- style属性の値レベル検証 ----------------------------------------
+    // Bloggerが画像の左/中央/右寄せに使うfloat/clear/margin、文字装飾に使う
+    // color/background-color/font-size等は「見た目を作るだけ」で安全と判断し、
+    // プロパティ単位で許可する。position/z-index/transform等の
+    // レイアウト破壊・画面乗っ取りにつながるプロパティは許可リストに含めない
+    // （＝そもそも通らない）。
+    var DANGEROUS_VALUE_RE = /url\s*\(|expression\s*\(|javascript:|vbscript:|@import|behavior\s*:/i;
+    var hasDangerousValue = function (value) {
+      return DANGEROUS_VALUE_RE.test(String(value));
+    };
+
+    var validateKeyword = function (allowedList) {
+      return function (value) {
+        return allowedList.indexOf(String(value).trim().toLowerCase()) !== -1;
+      };
+    };
+
+    // px/em/rem/pt/%の数値指定を、単位ごとの上限つきで検証する。
+    // Blogger実出力にvw/vh等のビューポート単位は現れないため許可リストに含めない
+    // （＝それらの単位の値はそもそも通らない）。
+    var validateLength = function (opts) {
+      opts = opts || {};
+      var allowNegative = !!opts.allowNegative;
+      var maxByUnit = opts.max || { px: 64, em: 4, rem: 4, pt: 48, "%": 200 };
+      var allowKeywords = opts.allowKeywords || [];
+      return function (value) {
+        var v = String(value).trim().toLowerCase();
+        if (allowKeywords.indexOf(v) !== -1) return true;
+        var m = /^(-?[\d.]+)(px|em|rem|pt|%)$/.exec(v);
+        if (!m) return false;
+        var num = parseFloat(m[1]);
+        var unit = m[2];
+        if (isNaN(num)) return false;
+        if (!allowNegative && num < 0) return false;
+        return Math.abs(num) <= (maxByUnit[unit] || 0);
+      };
+    };
+
+    var validateColor = function (value) {
+      // 構文として妥当な色かどうかはCSSOMへの再代入時点で既に保証されている
+      // （不正な値はブラウザが黙って無視し空文字になる）ため、ここでは
+      // 危険な記法（url()等）が紛れ込んでいないかだけを追加で確認する。
+      return !hasDangerousValue(value);
+    };
+
+    var validateTextDecoration = function (value) {
+      return /^(none|underline|overline|line-through)(\s+(none|underline|overline|line-through))*$/i.test(
+        String(value).trim()
+      );
+    };
+
+    var validateLineHeight = function (value) {
+      var v = String(value).trim();
+      if (/^[\d.]+$/.test(v)) {
+        var n = parseFloat(v);
+        return n > 0 && n <= 3;
+      }
+      return validateLength({ max: { px: 64, em: 3, rem: 3, pt: 48, "%": 300 } })(v);
+    };
+
+    var marginLengthValidator = validateLength({ max: { px: 64, em: 4, rem: 4, pt: 48, "%": 20 } });
+    var paddingLengthValidator = validateLength({ max: { px: 32, em: 2, rem: 2, pt: 24, "%": 10 } });
+
+    // 許可するCSSプロパティと、その値の検証関数。
+    // ここに載っていないプロパティ（position/z-index/top/left/right/bottom/
+    // transform/animation/filter/backdrop-filter/clip-path/behavior/
+    // overflow/display/cursor/pointer-events/visibility等）は無条件に除去される。
+    // margin/paddingは実際のBlogger出力に合わせて個別方向のみ許可し、
+    // ショートハンド（margin: 1em 2em ...）は扱わない。
+    var ALLOWED_STYLE_PROPS = {
+      "text-align": validateKeyword(["left", "right", "center", "justify", "start", "end"]),
+      "font-weight": validateKeyword([
+        "normal", "bold", "bolder", "lighter",
+        "100", "200", "300", "400", "500", "600", "700", "800", "900"
+      ]),
+      "font-style": validateKeyword(["normal", "italic", "oblique"]),
+      "text-decoration": validateTextDecoration,
+      "text-decoration-line": validateTextDecoration,
+      color: validateColor,
+      "background-color": validateColor,
+      "font-size": validateLength({
+        allowKeywords: [
+          "xx-small", "x-small", "small", "medium",
+          "large", "x-large", "xx-large", "smaller", "larger"
+        ],
+        max: { px: 48, em: 3, rem: 3, pt: 36, "%": 300 }
+      }),
+      "line-height": validateLineHeight,
+      float: validateKeyword(["left", "right", "none"]),
+      clear: validateKeyword(["left", "right", "both", "none"]),
+      "margin-top": marginLengthValidator,
+      "margin-right": marginLengthValidator,
+      "margin-bottom": marginLengthValidator,
+      "margin-left": marginLengthValidator,
+      "padding-top": paddingLengthValidator,
+      "padding-right": paddingLengthValidator,
+      "padding-bottom": paddingLengthValidator,
+      "padding-left": paddingLengthValidator
+    };
+
+    // 生のstyle文字列をブラウザ自身のCSSパーサーで一度解釈させ
+    // （独自の正規表現でCSS構文を解析するより確実）、そこから許可プロパティ
+    // だけを値検証つきで拾い直して再構築する。
+    var styleScratch = document.createElement("span");
+    var sanitizeStyleValue = function (rawStyle) {
+      if (!rawStyle) return "";
+      styleScratch.setAttribute("style", "");
+      try {
+        styleScratch.style.cssText = rawStyle;
+      } catch (e) {
+        return "";
+      }
+      var out = [];
+      for (var i = 0; i < styleScratch.style.length; i++) {
+        var prop = styleScratch.style[i];
+        var validator = ALLOWED_STYLE_PROPS[prop];
+        if (!validator) continue;
+        var value = styleScratch.style.getPropertyValue(prop);
+        if (!value || hasDangerousValue(value) || !validator(value)) continue;
+        out.push(prop + ": " + value);
+      }
+      return out.join("; ");
     };
 
     var sanitizeTree = function (node) {
@@ -317,11 +441,22 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
         var allowedAttrs = ALLOWED_ATTRS[tag] || [];
+        var rawStyle = child.getAttribute("style");
         Array.prototype.slice.call(child.attributes).forEach(function (attr) {
-          if (allowedAttrs.indexOf(attr.name.toLowerCase()) === -1) {
+          var name = attr.name.toLowerCase();
+          if (name === "style") return; // styleは下で別途サニタイズする
+          if (allowedAttrs.indexOf(name) === -1) {
             child.removeAttribute(attr.name);
           }
         });
+        if (rawStyle) {
+          var cleanedStyle = sanitizeStyleValue(rawStyle);
+          if (cleanedStyle) {
+            child.setAttribute("style", cleanedStyle);
+          } else {
+            child.removeAttribute("style");
+          }
+        }
         if (tag === "A" && child.hasAttribute("href")) {
           if (!isSafeUrl(child.getAttribute("href"), ["http:", "https:", "mailto:"])) {
             child.removeAttribute("href");

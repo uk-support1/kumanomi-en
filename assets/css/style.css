@@ -425,6 +425,9 @@ a {
   font-size: 0.95rem;
   line-height: 1.85;
   overflow-wrap: break-word;
+  /* Blogger本文が画像をfloatさせた場合に、はみ出さずカード内に
+     きちんと収まるよう新しいブロック整形コンテキストを作る */
+  overflow: hidden;
 }
 
 .notice-body-inner p {
@@ -436,9 +439,19 @@ a {
 }
 
 .notice-body-inner img {
-  max-width: 100%;
+  /* Bloggerの画像リンクは実測でmargin-left/right: 1em前後を使うため、
+     画像自体をmax-width:100%にするだけだとその余白の分だけ
+     コンテナ幅をはみ出す（overflow:hiddenで隠れて片側が欠けて見える）。
+     2em分を差し引いて予約しておくことで、余白込みで確実に収まる。 */
+  max-width: calc(100% - 2em);
   height: auto;
   border-radius: var(--radius);
+  /* サイト共通の img{display:block} を上書き。インライン系のままにしないと
+     Bloggerの中央寄せ（親のtext-align:centerで画像を中央寄せする方式）が
+     効かなくなる。floatさせた左右寄せの画像は元々display値に関わらず
+     ブロック化されるため、この変更による影響はない。 */
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .notice-body-inner a {
