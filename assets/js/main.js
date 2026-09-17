@@ -226,4 +226,56 @@ document.addEventListener("DOMContentLoaded", function () {
       if (e.key === "Escape") closeModal();
     });
   })();
+
+  // ===== お知らせ（Blogger固定ページの本文をJSONPで取得して表示） =====
+  (function () {
+    // 本番反映時は、この2値だけを変更すれば差し替えできます。
+    var NOTICE_CONFIG = {
+      blogUrl: "https://niiza-yasuragi.blogspot.com", // テスト用（本番はクマノミ園様のBlogger URLに差し替え）
+      pageTitle: "お知らせ（クマノミ園様のテスト用）" // テスト用（本番は「お知らせ」に差し替え）
+    };
+
+    var noticeSection = document.querySelector(".notice-section");
+    var noticeCard = document.getElementById("noticeCard");
+    var noticeContent = document.getElementById("noticeContent");
+    if (!noticeSection || !noticeCard || !noticeContent) return;
+
+    var hideNotice = function () {
+      noticeSection.hidden = true;
+    };
+
+    var callbackName = "__kumanomiNoticeCallback";
+    var timeoutId = setTimeout(hideNotice, 8000);
+
+    window[callbackName] = function (data) {
+      clearTimeout(timeoutId);
+      try {
+        var entries = (data && data.feed && data.feed.entry) || [];
+        var match = null;
+        for (var i = 0; i < entries.length; i++) {
+          var title = entries[i].title && entries[i].title.$t;
+          if (title === NOTICE_CONFIG.pageTitle) {
+            match = entries[i];
+            break;
+          }
+        }
+        var html = match && match.content && match.content.$t;
+        if (!match || !html || !html.replace(/<[^>]*>/g, "").trim()) {
+          hideNotice();
+          return;
+        }
+        noticeContent.innerHTML = html;
+      } catch (e) {
+        hideNotice();
+      }
+    };
+
+    var feedScript = document.createElement("script");
+    feedScript.src =
+      NOTICE_CONFIG.blogUrl.replace(/\/$/, "") +
+      "/feeds/pages/default?alt=json-in-script&callback=" +
+      callbackName;
+    feedScript.onerror = hideNotice;
+    document.body.appendChild(feedScript);
+  })();
 });
