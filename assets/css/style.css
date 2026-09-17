@@ -1789,24 +1789,6 @@ a {
     font-size: 1rem;
   }
 
-  .nav-toggle {
-    display: none;
-  }
-
-  .site-nav {
-    position: static;
-    flex-direction: row;
-    max-height: none;
-    overflow: visible;
-    border: none;
-    background: transparent;
-  }
-
-  .site-nav a {
-    border-top: none;
-    padding: 0 0 0 28px;
-  }
-
   .price-summary-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -2083,6 +2065,37 @@ a {
 
   .pc-only {
     display: inline;
+  }
+}
+
+/* ヘッダーナビの横並び表示は1024px以上でのみ有効にする。
+   header-innerはmax-width:960pxで頭打ちになるため、1024px以上の
+   ビューポートなら常に960px前後の安定した幅を確保できるが、
+   768〜1023pxではビューポートそのものが960pxを下回り、5項目＋
+   ロゴ＋お知らせタイトル(最大10文字)を1行ずつ収めるには狭すぎて
+   横あふれが起きる。そのため、この中間幅ではスマホと同じ
+   ハンバーガーメニューにフォールバックする。 */
+@media (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    max-height: none;
+    overflow: visible;
+    border: none;
+    background: transparent;
+    gap: 18px;
+  }
+
+  .site-nav a {
+    border-top: none;
+    padding: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
