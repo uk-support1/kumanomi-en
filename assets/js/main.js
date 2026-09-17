@@ -230,9 +230,31 @@ document.addEventListener("DOMContentLoaded", function () {
   // ===== お知らせ（Blogger固定ページの本文をJSONPで取得して表示） =====
   (function () {
     // 本番反映時は、この2値だけを変更すれば差し替えできます。
+    // pageIdはBlogger側でページタイトルを変更しても変わらない固定値のため、
+    // 辰巳様が固定ページのタイトルを自由に変更しても対象ページの取得は継続します。
+    // 調べ方：
+    //   ・Bloggerの固定ページ編集画面を開いたときのURL
+    //     https://www.blogger.com/blog/page/edit/<ブログID>/<ページID> の末尾の数字
+    //   ・または /feeds/pages/default?alt=json を開き、対象ページの
+    //     entry.id の "...page-XXXXXXXXXXXXXXXXXXX" の数字部分
     var NOTICE_CONFIG = {
       blogUrl: "https://niiza-yasuragi.blogspot.com", // テスト用（本番はクマノミ園様のBlogger URLに差し替え）
-      pageTitle: "お知らせ（クマノミ園様のテスト用）" // テスト用（本番は「お知らせ」に差し替え）
+      pageId: "1718639642751596113" // テスト用（本番はクマノミ園様の「お知らせ」固定ページIDに差し替え）
+    };
+
+    // entry.id.$t は "tag:blogger.com,1999:blog-<blogId>.page-<pageId>" 形式。
+    // pageIdは最大19桁の数値になりうるため、精度が落ちないよう常に文字列として扱う。
+    var extractPageId = function (entryId) {
+      var m = /\.page-(\d+)$/.exec(entryId || "");
+      return m ? m[1] : null;
+    };
+
+    // ヘッダーナビは1行表示を維持するため、文字コード（サロゲートペア）単位で
+    // 安全に10文字＋「…」へ切り詰める。アコーディオン側は全文表示のため使わない。
+    var truncateForNav = function (text, maxChars) {
+      var chars = Array.from(text || "");
+      if (chars.length <= maxChars) return text || "";
+      return chars.slice(0, maxChars).join("") + "…";
     };
 
     // Blogger本文をそのままinnerHTMLへ渡さず、許可した要素・属性だけを残すサニタイズ処理。
@@ -341,8 +363,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var entries = (data && data.feed && data.feed.entry) || [];
         var match = null;
         for (var i = 0; i < entries.length; i++) {
-          var title = entries[i].title && entries[i].title.$t;
-          if (title === NOTICE_CONFIG.pageTitle) {
+          var entryId = entries[i].id && entries[i].id.$t;
+          if (extractPageId(entryId) === NOTICE_CONFIG.pageId) {
             match = entries[i];
             break;
           }
@@ -357,11 +379,13 @@ document.addEventListener("DOMContentLoaded", function () {
           hideNotice();
           return;
         }
-        var pageTitle = title || "";
+        // 表示用タイトルは常にBloggerの「現在の」ページタイトルを使う
+        // （対象ページの特定にはpageIdのみを使い、タイトルは使わない）。
+        var pageTitle = (match.title && match.title.$t) || "";
         noticeContent.innerHTML = safeHtml;
-        if (noticeSummaryLabel) noticeSummaryLabel.textContent = pageTitle;
+        if (noticeSummaryLabel) noticeSummaryLabel.textContent = pageTitle; // アコーディオン側は全文表示
         if (noticeNavLink) {
-          noticeNavLink.textContent = pageTitle;
+          noticeNavLink.textContent = truncateForNav(pageTitle, 10); // ヘッダーは10文字+「…」
           noticeNavLink.hidden = false;
         }
       } catch (e) {

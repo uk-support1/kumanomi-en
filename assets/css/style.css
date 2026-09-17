@@ -135,6 +135,16 @@ a {
   font-size: 0.95rem;
 }
 
+/* Blogger固定ページタイトルは可変長のため、ヘッダーナビでは
+   1行表示を必ず維持し、はみ出す場合はCSS側でも省略する
+   （JS側で文字数を10文字+「…」に切り詰めた上での二重の安全策） */
+.nav-notice-link {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
 /* Hero */
 .hero {
   position: relative;
