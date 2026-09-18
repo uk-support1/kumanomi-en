@@ -238,8 +238,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //   ・または /feeds/pages/default?alt=json を開き、対象ページの
     //     entry.id の "...page-XXXXXXXXXXXXXXXXXXX" の数字部分
     var NOTICE_CONFIG = {
-      blogUrl: "https://niiza-yasuragi.blogspot.com", // テスト用（本番はクマノミ園様のBlogger URLに差し替え）
-      pageId: "1718639642751596113" // テスト用（本番はクマノミ園様の「お知らせ」固定ページIDに差し替え）
+      blogUrl: "https://kumanomien.blogspot.com", // 本番：クマノミ園様のBlogger URL
+      pageId: "2767251117867366656" // 本番：クマノミ園様の「お知らせ」固定ページID（/feeds/pages/default?alt=jsonで確認済み）
     };
 
     // entry.id.$t は "tag:blogger.com,1999:blog-<blogId>.page-<pageId>" 形式。
@@ -266,7 +266,9 @@ document.addEventListener("DOMContentLoaded", function () {
       UL: true, OL: true, LI: true,
       H2: true, H3: true, H4: true,
       A: true, IMG: true,
-      SPAN: true, DIV: true, BLOCKQUOTE: true, HR: true, SUB: true, SUP: true
+      SPAN: true, DIV: true, BLOCKQUOTE: true, HR: true, SUB: true, SUP: true,
+      TABLE: true, CAPTION: true, THEAD: true, TBODY: true, TFOOT: true,
+      TR: true, TH: true, TD: true
     };
     // 中身ごと除去する要素（スクリプト実行やフォーム送信等につながるもの）。
     var STRIP_WITH_CONTENTS = {
@@ -277,7 +279,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     var ALLOWED_ATTRS = {
       A: ["href"],
-      IMG: ["src", "alt", "width", "height", "border"]
+      IMG: ["src", "alt", "width", "height", "border"],
+      TH: ["colspan", "rowspan"],
+      TD: ["colspan", "rowspan"]
     };
 
     var isSafeUrl = function (value, allowedSchemes) {
